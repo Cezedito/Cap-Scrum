@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cap Scrum</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Cap Scrum">
+<meta name="theme-color" content="#F9F8F6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0A1430" media="(prefers-color-scheme: dark)">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&amp;display=swap" rel="stylesheet">
+<style>
+/* layout: Bento éditorial (fond crème, marine, terracotta) + structure iOS (grand titre, listes groupées) + dock Liquid Glass flottant */
+:root{
+  --bg:#F9F8F6; --surface:#FFFFFF; --surface2:rgba(0,32,91,.05); --ink:#00205B; --muted:rgba(0,32,91,.6); --line:rgba(0,32,91,.08); --hair:rgba(0,32,91,.05);
+  --accent:#E2725B; --accent-soft:rgba(226,114,91,.13); --link:#B94E39;
+  --cta:#C2543E; --cta-ink:#FFFFFF;
+  --navy-card:#00205B; --on-navy:#F9F8F6; --on-navy-muted:rgba(249,248,246,.65); --navy-track:rgba(249,248,246,.16);
+  --icon-bg:rgba(0,32,91,.06);
+  --good:#2F9E66; --good-ink:#1E7A4C; --good-bg:rgba(47,158,102,.12);
+  --bad:#D1364A; --bad-ink:#B02236; --bad-bg:rgba(209,54,74,.10);
+  --warn:#E2725B; --warn-ink:#B94E39; --warn-bg:rgba(226,114,91,.13);
+  --shadow:0 8px 30px rgba(0,0,0,.03),0 1px 2px rgba(0,32,91,.03);
+  --shadow-hi:0 14px 40px rgba(0,32,91,.12),0 2px 6px rgba(0,32,91,.06);
+  --glass:rgba(255,255,255,.55); --glass-edge:rgba(255,255,255,.9); --glass-low:rgba(0,32,91,.06); --glass-shadow:0 12px 34px rgba(0,32,91,.14),0 2px 6px rgba(0,32,91,.06);
+  --amb1:rgba(226,114,91,.10); --amb2:rgba(0,32,91,.06);
+  --f-display:"Montserrat","Avenir Next",-apple-system,system-ui,sans-serif;
+  --f-body:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter","Roboto",system-ui,sans-serif;
+  --spring:cubic-bezier(.34,1.42,.64,1); --ease:cubic-bezier(.22,1,.36,1);
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0A1430; --surface:#121E42; --surface2:rgba(244,241,236,.07); --ink:#F4F1EC; --muted:rgba(244,241,236,.62); --line:rgba(244,241,236,.10); --hair:rgba(244,241,236,.07);
+  --accent:#EE8A73; --accent-soft:rgba(238,138,115,.16); --link:#F09A85;
+  --cta:#EE8A73; --cta-ink:#0A1430;
+  --navy-card:#1B2C5E; --on-navy:#F4F1EC; --on-navy-muted:rgba(244,241,236,.65); --navy-track:rgba(244,241,236,.14);
+  --icon-bg:rgba(244,241,236,.08);
+  --good:#4CC488; --good-ink:#6BD49D; --good-bg:rgba(76,196,136,.16);
+  --bad:#F06478; --bad-ink:#F58495; --bad-bg:rgba(240,100,120,.16);
+  --warn:#EE8A73; --warn-ink:#F09A85; --warn-bg:rgba(238,138,115,.16);
+  --shadow:0 8px 30px rgba(0,0,0,.35); --shadow-hi:0 16px 44px rgba(0,0,0,.5);
+  --glass:rgba(22,34,72,.5); --glass-edge:rgba(255,255,255,.18); --glass-low:rgba(255,255,255,.06); --glass-shadow:0 14px 36px rgba(0,0,0,.5);
+  --amb1:rgba(238,138,115,.12); --amb2:rgba(80,110,200,.16);
+  color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --bg:#0A1430; --surface:#121E42; --surface2:rgba(244,241,236,.07); --ink:#F4F1EC; --muted:rgba(244,241,236,.62); --line:rgba(244,241,236,.10); --hair:rgba(244,241,236,.07);
+  --accent:#EE8A73; --accent-soft:rgba(238,138,115,.16); --link:#F09A85;
+  --cta:#EE8A73; --cta-ink:#0A1430;
+  --navy-card:#1B2C5E; --on-navy:#F4F1EC; --on-navy-muted:rgba(244,241,236,.65); --navy-track:rgba(244,241,236,.14);
+  --icon-bg:rgba(244,241,236,.08);
+  --good:#4CC488; --good-ink:#6BD49D; --good-bg:rgba(76,196,136,.16);
+  --bad:#F06478; --bad-ink:#F58495; --bad-bg:rgba(240,100,120,.16);
+  --warn:#EE8A73; --warn-ink:#F09A85; --warn-bg:rgba(238,138,115,.16);
+  --shadow:0 8px 30px rgba(0,0,0,.35); --shadow-hi:0 16px 44px rgba(0,0,0,.5);
+  --glass:rgba(22,34,72,.5); --glass-edge:rgba(255,255,255,.18); --glass-low:rgba(255,255,255,.06); --glass-shadow:0 14px 36px rgba(0,0,0,.5);
+  --amb1:rgba(238,138,115,.12); --amb2:rgba(80,110,200,.16);
+  color-scheme:dark;}
+
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{background:var(--bg)}
+body{margin:0;min-height:100%;background:transparent;color:var(--ink);font-family:var(--f-body);font-weight:500;font-size:17px;line-height:1.42;letter-spacing:-.3px;-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%}
+body::before{content:"";position:fixed;inset:-20%;z-index:-1;pointer-events:none;background:radial-gradient(40% 32% at 85% 8%,var(--amb1),transparent 70%),radial-gradient(45% 40% at 10% 90%,var(--amb2),transparent 70%),var(--bg)}
+.app{max-width:480px;margin:0 auto;min-height:100vh;min-height:100dvh;padding:calc(env(safe-area-inset-top) + 8px) 16px calc(120px + env(safe-area-inset-bottom))}
+body.inquiz .app{padding-bottom:calc(32px + env(safe-area-inset-bottom))}
+header.top{padding:18px 4px 14px}
+header.top span{display:block;font-size:13px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
+header.top h1{font-family:var(--f-display);font-weight:800;font-size:34px;line-height:40px;letter-spacing:-.8px;margin:4px 0 0;color:var(--ink)}
+h2{font-family:var(--f-body);font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);margin:28px 8px 10px}
+h3{font-family:var(--f-body);font-weight:600;font-size:17px;letter-spacing:-.3px;margin:0 0 2px;text-wrap:balance;color:var(--ink)}
+p{margin:0 0 10px}
+.muted{color:var(--muted)}
+.mono{font-variant-numeric:tabular-nums}
+.tag{font-size:13px;font-weight:600;color:var(--muted);letter-spacing:-.08px}
+.card{background:var(--surface);border:1px solid var(--hair);border-radius:24px;padding:20px;box-shadow:var(--shadow)}
+.stack{display:flex;flex-direction:column;gap:12px}
+
+/* bento */
+.bento{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.span2{grid-column:1 / -1}
+.tile{background:var(--surface);border:1px solid var(--hair);border-radius:26px;padding:20px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px;min-width:0;text-align:left}
+.tile .kpi{font-family:var(--f-display);font-weight:800;font-size:34px;line-height:1;letter-spacing:-1px;font-variant-numeric:tabular-nums}
+.tile .kpi small{font-family:var(--f-body);font-size:15px;font-weight:600;color:var(--muted);letter-spacing:0;margin-left:3px}
+.tile.navy{background:var(--navy-card);color:var(--on-navy);border-color:transparent;box-shadow:var(--shadow-hi);position:relative;overflow:hidden}
+.tile.navy::after{content:"";position:absolute;right:-60px;top:-60px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(226,114,91,.35),transparent 70%);pointer-events:none}
+.tile.navy .tag{color:var(--on-navy-muted)}
+.hero-num{display:flex;align-items:baseline;gap:10px}
+.hero-num b{font-family:var(--f-display);font-weight:800;font-size:68px;line-height:.95;letter-spacing:-2.5px;font-variant-numeric:tabular-nums}
+.hero-num small{font-size:16px;font-weight:600;color:var(--on-navy-muted)}
+.tile.navy .meter{background:var(--navy-track)}
+.tile.navy .meter u{background:var(--on-navy)}
+.tile.navy .meter-legend{color:var(--on-navy-muted)}
+.tile.navy p{color:var(--on-navy-muted);margin:0;font-size:15px}
+.ico{width:44px;height:44px;flex:none;border-radius:14px;display:grid;place-items:center;background:var(--icon-bg);color:var(--ink)}
+.ico svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ico.cta{background:var(--cta);color:var(--cta-ink)}
+.cont{flex-direction:row;align-items:center;gap:14px;border:1px solid var(--hair);cursor:pointer;font:inherit;color:inherit}
+.cont .txt{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.cont .txt b{font-weight:600;font-size:16px;line-height:1.3}
+.chev{flex:none;width:8px;height:8px;border-top:2px solid var(--muted);border-right:2px solid var(--muted);transform:rotate(45deg);opacity:.7;margin-right:4px}
+
+/* score (résultats) */
+.score{display:flex;flex-direction:column;gap:12px}
+.score .big{display:flex;align-items:baseline;gap:8px}
+.score .big b{font-family:var(--f-display);font-size:60px;font-weight:800;line-height:1;letter-spacing:-2px;font-variant-numeric:tabular-nums}
+.score .big small{font-size:16px;font-weight:600;color:var(--muted);font-variant-numeric:tabular-nums}
+.meter{position:relative;height:8px;border-radius:99px;background:var(--surface2)}
+.meter i{display:block;height:100%;border-radius:99px;background:var(--accent)}
+.meter u{position:absolute;top:-4px;bottom:-4px;width:2px;border-radius:1px;background:var(--ink);opacity:.5}
+.meter-legend{display:flex;justify-content:space-between;font-size:12px;font-weight:600;color:var(--muted);margin-top:6px;font-variant-numeric:tabular-nums}
+
+/* boutons */
+button{font:inherit;color:inherit;cursor:pointer;letter-spacing:inherit}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;min-height:54px;width:100%;padding:14px 20px;border-radius:18px;border:1px solid var(--hair);background:var(--surface);color:var(--ink);font-weight:600;font-size:17px;text-align:center;box-shadow:var(--shadow)}
+.btn.primary{background:var(--cta);color:var(--cta-ink);border-color:transparent;box-shadow:0 8px 22px color-mix(in srgb,var(--cta) 30%,transparent),inset 0 1px 0 rgba(255,255,255,.22)}
+.btn[disabled]{opacity:.35;cursor:default}
+.back{background:none;border:0;padding:8px 0;min-height:44px;color:var(--link);font-size:17px;font-weight:600;display:inline-flex;align-items:center;gap:4px}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+/* pastilles */
+.pill{display:inline-flex;align-items:center;font-size:12px;font-weight:600;letter-spacing:0;padding:4px 10px;border-radius:99px;background:var(--icon-bg);color:var(--ink);white-space:nowrap}
+.pill.good{background:var(--good-bg);color:var(--good-ink)} .pill.bad{background:var(--bad-bg);color:var(--bad-ink)} .pill.warn{background:var(--warn-bg);color:var(--warn-ink)} .pill.neutral{background:var(--surface2);color:var(--muted)}
+
+/* modules */
+.mod{display:grid;grid-template-columns:48px 1fr 12px;gap:14px;align-items:center;text-align:left;width:100%;background:var(--surface);border:1px solid var(--hair);border-radius:24px;padding:18px;box-shadow:var(--shadow)}
+.mod::after{content:"";width:8px;height:8px;border-top:2px solid var(--muted);border-right:2px solid var(--muted);transform:rotate(45deg);opacity:.6}
+.mod .num{width:48px;height:48px;border-radius:16px;display:grid;place-items:center;font-family:var(--f-display);font-weight:800;font-size:20px;background:var(--icon-bg)!important;color:var(--ink)}
+.mod.done .num{background:var(--good-bg)!important;color:var(--good-ink)}
+.mod .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.mod .sub{font-size:15px;color:var(--muted);letter-spacing:-.2px}
+.prog{height:5px;border-radius:99px;background:var(--surface2);overflow:hidden;margin-top:12px}
+.prog i{display:block;height:100%;background:var(--accent);border-radius:99px}
+.mod.done .prog i{background:var(--good)}
+
+/* leçons : liste groupée */
+.stack.list{gap:0;background:var(--surface);border:1px solid var(--hair);border-radius:24px;overflow:hidden;box-shadow:var(--shadow)}
+.les{display:grid;grid-template-columns:30px 1fr auto;gap:12px;align-items:center;width:100%;text-align:left;background:var(--surface);border:0;padding:14px 18px;min-height:56px;position:relative}
+.les + .les::before{content:"";position:absolute;top:0;left:60px;right:0;height:1px;background:var(--hair)}
+.les .dot{width:28px;height:28px;border-radius:10px;display:grid;place-items:center;font-size:13px;font-weight:700;background:var(--icon-bg);color:var(--ink)}
+.les.read .dot{background:var(--good-bg);color:var(--good-ink)}
+.les b{font-weight:600}
+.les .min{font-size:14px;font-weight:600;color:var(--muted);font-variant-numeric:tabular-nums}
+
+/* lecteur */
+.reader h1{font-family:var(--f-display);font-weight:800;font-size:30px;line-height:35px;letter-spacing:-.8px;margin:6px 0 18px;text-wrap:balance}
+.reader > p{font-size:17px;line-height:1.5}
+.box{border-radius:22px;padding:18px 20px;margin:16px 0}
+.box .lab{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;display:block}
+.box.ex{background:var(--navy-card);color:var(--on-navy)} .box.ex .lab{color:var(--accent)}
+.box.trap{background:var(--accent-soft)} .box.trap .lab{color:var(--link)}
+.box.key{background:var(--surface);border:1px solid var(--hair);box-shadow:var(--shadow)} .box.key .lab{color:var(--good-ink)}
+.box ul{margin:0;padding-left:20px} .box li{margin-bottom:6px}
+.box li:last-child{margin-bottom:0} .box p{margin:0}
+.defs{display:flex;flex-direction:column;margin:16px 0;background:var(--surface);border:1px solid var(--hair);border-radius:22px;padding:2px 20px;box-shadow:var(--shadow)}
+.defs div{padding:14px 0;border-top:1px solid var(--hair);color:var(--muted);font-size:15px;letter-spacing:-.2px} .defs div:first-child{border-top:0}
+.defs b{display:block;font-family:var(--f-display);font-size:16px;font-weight:700;color:var(--ink);letter-spacing:-.3px;margin-bottom:3px}
+.pairs{display:grid;grid-template-columns:1fr 1fr;margin:16px 0;background:var(--surface);border:1px solid var(--hair);border-radius:22px;padding:2px 20px;box-shadow:var(--shadow)}
+.pairs div{padding:12px 0;border-top:1px solid var(--hair)} .pairs div:nth-child(-n+2){border-top:0}
+.pairs div:nth-child(2n){text-align:right;font-weight:700}
+.pairs .h{font-size:12px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);font-weight:600}
+.readnav{display:grid;grid-template-columns:1fr 2fr;gap:12px;margin-top:26px}
+
+/* quiz */
+.qbar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:6px}
+.segs{display:flex;gap:3px;margin:2px 0 16px}
+.segs i{flex:1;height:4px;border-radius:9px;background:var(--line)}
+.segs i.ok{background:var(--good)} .segs i.ko{background:var(--bad)} .segs i.cur{background:var(--accent)} .segs i.ans{background:var(--muted)}
+.timer{font-size:15px;font-weight:700;padding:6px 12px;border-radius:99px;background:var(--surface);border:1px solid var(--hair);font-variant-numeric:tabular-nums}
+.timer.low{color:var(--bad-ink);background:var(--bad-bg)}
+.qtext{font-family:var(--f-display);font-weight:800;font-size:23px;line-height:29px;letter-spacing:-.5px;margin:14px 0 6px;text-wrap:balance}
+.qhint{font-size:15px;color:var(--muted);margin-bottom:18px}
+.opts{display:flex;flex-direction:column;gap:12px}
+.opt{display:grid;grid-template-columns:32px 1fr;gap:14px;align-items:center;text-align:left;min-height:58px;padding:14px 16px;border-radius:20px;border:1.5px solid var(--hair);background:var(--surface);box-shadow:var(--shadow)}
+.opt .l{font-family:var(--f-display);font-size:14px;font-weight:800;width:32px;height:32px;border-radius:11px;display:grid;place-items:center;background:var(--icon-bg);color:var(--ink)}
+.opt.sel{border-color:var(--accent);background:var(--accent-soft)} .opt.sel .l{background:var(--cta);color:var(--cta-ink)}
+.opt.ok{border-color:var(--good);background:var(--good-bg)} .opt.ok .l{background:var(--good);color:#fff}
+.opt.ko{border-color:var(--bad);background:var(--bad-bg)} .opt.ko .l{background:var(--bad);color:#fff}
+.opt[disabled]{cursor:default}
+.feedback{margin-top:16px;border-radius:22px;padding:18px 20px;background:var(--surface);border:1px solid var(--hair)}
+.feedback.good{background:var(--good-bg);border-color:transparent} .feedback.bad{background:var(--bad-bg);border-color:transparent}
+.feedback b.v{display:block;font-family:var(--f-display);font-size:18px;font-weight:800;margin-bottom:4px}
+.actions{margin-top:18px;display:flex;flex-direction:column;gap:12px}
+
+/* repli */
+details{background:var(--surface);border:1px solid var(--hair);border-radius:24px;overflow:hidden;box-shadow:var(--shadow)}
+details+details{margin-top:12px}
+summary{list-style:none;min-height:58px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;font-family:var(--f-display);font-size:17px;font-weight:700;cursor:pointer}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"";flex:none;width:8px;height:8px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);margin-top:-4px;transition:transform .3s var(--spring)}
+details[open] summary::after{transform:rotate(-135deg);margin-top:4px}
+.dbody{padding:0 20px 20px}
+.dbody ul{margin:0;padding-left:20px} .dbody li{margin-bottom:6px}
+.tb{display:grid;grid-template-columns:1fr auto;column-gap:12px}
+.tb div{padding:12px 0;border-top:1px solid var(--hair)}
+.tb div:nth-child(2n){text-align:right;color:var(--muted);font-weight:600;font-variant-numeric:tabular-nums}
+.tb div:nth-child(-n+2){border-top:0}
+.gl div:nth-child(2n){color:var(--ink);font-weight:700}
+
+/* dock Liquid Glass */
+nav.tabs{position:fixed;z-index:5;left:50%;bottom:calc(env(safe-area-inset-bottom) + 10px);transform:translateX(-50%);width:calc(100% - 32px);max-width:420px;padding:6px;border-radius:34px;background:var(--glass);
+  -webkit-backdrop-filter:blur(22px) saturate(190%) brightness(1.04);backdrop-filter:blur(22px) saturate(190%) brightness(1.04);
+  box-shadow:inset 0 1px 0 var(--glass-edge),inset 0 -1px 0 var(--glass-low),inset 0 0 0 1px var(--glass-low),var(--glass-shadow);overflow:hidden;
+  transition:opacity .3s ease,transform .45s var(--spring)}
+nav.tabs::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(180deg,rgba(255,255,255,.4),rgba(255,255,255,0) 45%),radial-gradient(120% 60% at 50% -20%,rgba(255,255,255,.25),transparent 60%);mix-blend-mode:soft-light}
+body.inquiz nav.tabs{opacity:0;pointer-events:none;transform:translate(-50%,30px) scale(.94)}
+nav.tabs .in{position:relative;display:grid;grid-template-columns:repeat(4,1fr)}
+.ind{position:absolute;top:0;bottom:0;left:0;width:25%;pointer-events:none;transition:transform .55s var(--spring)}
+.ind::before{content:"";position:absolute;inset:0 3px;border-radius:28px;background:var(--accent-soft);box-shadow:inset 0 1px 0 rgba(255,255,255,.5),inset 0 -1px 0 rgba(255,255,255,.08),0 2px 8px rgba(0,32,91,.08)}
+.tab{position:relative;z-index:1;background:none;border:0;border-radius:28px;min-height:54px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:10px;font-weight:600;letter-spacing:.1px;color:var(--muted);transition:color .3s ease}
+.tab svg{width:26px;height:26px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:transform .45s var(--spring)}
+.tab[aria-current="page"]{color:var(--link)}
+.tab[aria-current="page"] svg{stroke-width:2.2;transform:translateY(-1px) scale(1.08)}
+.tab:active svg{transform:scale(.88)}
+
+/* feuille modale */
+.sheet{position:fixed;inset:0;z-index:20;background:rgba(0,20,60,.35);display:flex;align-items:flex-end;justify-content:center;padding:8px 8px calc(8px + env(safe-area-inset-bottom))}
+.sheet .card{width:100%;max-width:464px;border-radius:28px;text-align:center;box-shadow:var(--shadow-hi)}
+
+/* pressions */
+.btn,.opt,.mod,.les,.tile,.back{transition:transform .35s var(--spring),box-shadow .2s ease,background-color .2s ease,border-color .2s ease}
+.btn:active:not([disabled]),.mod:active,.opt:active:not([disabled]),.cont:active{transform:scale(.97)}
+.les:active{background:var(--surface2)}
+
+@media (prefers-reduced-motion: no-preference){
+  .v-fwd{animation:vFwd .42s var(--ease) both} .v-back{animation:vBack .42s var(--ease) both}
+  .v-fade{animation:vFade .32s var(--ease) both} .v-up{animation:vUp .5s var(--ease) both}
+  @keyframes vFwd{from{opacity:0;transform:translateX(36px)}}
+  @keyframes vBack{from{opacity:0;transform:translateX(-36px)}}
+  @keyframes vFade{from{opacity:0;transform:translateY(8px) scale(.99)}}
+  @keyframes vUp{from{opacity:0;transform:translateY(40px) scale(.97)}}
+  .v-fade .stack > *,.v-fade > .card,.v-fade > details,.v-fade .bento > *,.v-up .opt{animation:stag .55s var(--ease) both}
+  .v-fade .bento > *:nth-child(2),.v-fade .stack > *:nth-child(2),.v-up .opt:nth-child(2){animation-delay:.05s}
+  .v-fade .bento > *:nth-child(3),.v-fade .stack > *:nth-child(3),.v-up .opt:nth-child(3){animation-delay:.1s}
+  .v-fade .bento > *:nth-child(4),.v-fade .stack > *:nth-child(4),.v-up .opt:nth-child(4){animation-delay:.15s}
+  .v-fade .stack > *:nth-child(5){animation-delay:.2s} .v-fade .stack > *:nth-child(6){animation-delay:.25s}
+  @keyframes stag{from{opacity:0;transform:translateY(14px) scale(.98)}}
+  .meter i,.prog i{transform-origin:left;animation:grow .9s var(--ease) both .15s}
+  @keyframes grow{from{transform:scaleX(0)}}
+  .feedback{animation:pop .45s var(--spring) both}
+  .opt.ok{animation:okp .45s var(--spring)} .opt.ko{animation:shake .4s ease}
+  @keyframes pop{from{opacity:0;transform:translateY(10px) scale(.96)}}
+  @keyframes okp{50%{transform:scale(1.025)}}
+  @keyframes shake{20%{transform:translateX(-6px)}40%{transform:translateX(5px)}60%{transform:translateX(-3px)}80%{transform:translateX(2px)}}
+  .sheet{animation:fadeIn .25s ease both} .sheet .card{animation:sheetUp .45s var(--spring) both}
+  @keyframes fadeIn{from{opacity:0}} @keyframes sheetUp{from{transform:translateY(110%)}}
+  details .dbody{animation:stag .35s var(--ease) both}
+}
+.rnav{display:grid;grid-template-columns:1fr 1.3fr 1fr;gap:10px;margin-top:20px}
+.rnav .btn{padding:12px 8px;font-size:15px;min-height:52px}
+.flagbtn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--hair);background:var(--surface);border-radius:99px;padding:7px 13px;font-size:14px;font-weight:600;color:var(--muted);box-shadow:var(--shadow);min-height:40px;transition:transform .35s var(--spring),background-color .2s ease}
+.flagbtn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linejoin:round}
+.flagbtn.on{background:var(--accent-soft);color:var(--link);border-color:transparent}
+.flagbtn.on svg{fill:currentColor}
+.flagbtn:active{transform:scale(.94)}
+.rgrid{display:grid;grid-template-columns:repeat(8,1fr);gap:6px;margin:14px 0}
+.rgrid button{aspect-ratio:1;border-radius:10px;border:1px solid var(--hair);background:var(--surface);font-size:13px;font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums;padding:0;position:relative}
+.rgrid button.a{background:var(--navy-card);color:var(--on-navy);border-color:transparent}
+.rgrid button.f::after{content:"";position:absolute;top:3px;right:3px;width:7px;height:7px;border-radius:50%;background:var(--accent)}
+.rgrid button.c{outline:2px solid var(--accent);outline-offset:1px}
+.rlegend{display:flex;flex-wrap:wrap;gap:14px;font-size:13px;color:var(--muted);font-weight:600}
+.rlegend span{display:inline-flex;align-items:center;gap:6px}
+.rlegend i{width:14px;height:14px;border-radius:4px;border:1px solid var(--hair);background:var(--surface);position:relative}
+.rlegend i.a{background:var(--navy-card);border-color:transparent}
+.rlegend i.f::after{content:"";position:absolute;top:2px;right:2px;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+
+.ready{display:flex;flex-direction:column}
+.ready div{display:grid;grid-template-columns:26px 1fr;gap:12px;align-items:center;padding:10px 0;border-top:1px solid var(--hair);font-size:15px}
+.ready div:first-child{border-top:0}
+.ready .ck{width:24px;height:24px;border-radius:8px;border:1.5px solid var(--line);display:grid;place-items:center;font-size:13px;font-weight:800;color:#fff}
+.ready .ok .ck{background:var(--good);border-color:var(--good)}
+.ready .ok span:last-child{color:var(--muted);text-decoration:line-through}
+.ocard{display:flex;flex-direction:column;gap:12px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.oform{display:grid;grid-template-columns:1fr 76px 64px;gap:8px;align-items:stretch}
+.oform .btn{min-height:48px;padding:10px 12px;font-size:15px;text-decoration:none}
+.oform input{min-width:0;border:1px solid var(--line);border-radius:16px;background:var(--surface2);color:var(--ink);font:inherit;font-weight:600;text-align:center;padding:0 8px;-moz-appearance:textfield}
+.oform input::-webkit-outer-spin-button,.oform input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.oform input.err{border-color:var(--bad)}
+.oform input:focus{outline:2px solid var(--accent);outline-offset:1px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+a.btn{color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="top" id="hdr"><span>Cap Scrum · PSM 1 · PSPO 1</span><h1 id="htitle">Accueil</h1></header>
+  <main id="view" aria-live="polite"></main>
+</div>
+<nav class="tabs" aria-label="Navigation principale"><div class="in" id="tabs"></div></nav>
+<div id="sheet"></div>
+
+<script>
+(function(){
+"use strict";
+
+/* ===================== COURS ===================== */
+var MODS = [
+{n:"Les fondamentaux",s:"Empirisme, valeurs, artefacts, Definition of Done",L:[
+ {t:"Scrum en une minute",min:3,b:[
+  ["p","Scrum est un cadre de travail léger qui aide des personnes, des équipes et des organisations à créer de la valeur grâce à des solutions adaptatives à des problèmes complexes."],
+  ["p","Il est volontairement incomplet : il donne les règles du jeu (responsabilités, événements, artefacts) mais pas les pratiques. User stories, story points, burndown : rien de tout cela n’est obligatoire."],
+  ["ex","Dans une migration ERP, Scrum ne te dit pas comment paramétrer le plan comptable. Il te dit comment organiser l’équipe pour livrer par petits morceaux utiles, et ajuster en route."],
+  ["key",["Scrum repose sur l’empirisme et le lean thinking (réduire le gaspillage, se concentrer sur l’essentiel)","Cadre léger, volontairement incomplet","Le Scrum Guide 2020 est la seule référence de l’examen"]],
+  ["trap","Une réponse qui impose une pratique précise (« les user stories sont obligatoires ») est presque toujours fausse."]]},
+ {t:"L’empirisme et ses 3 piliers",min:4,b:[
+  ["p","L’empirisme, c’est décider à partir de ce qu’on observe plutôt que de ce qu’on avait prévu. Il repose sur trois piliers."],
+  ["defs",[["Transparence","Le travail et les artefacts sont visibles par ceux qui font le travail et ceux qui le reçoivent."],["Inspection","On examine souvent les artefacts et la progression pour détecter les écarts."],["Adaptation","Si un écart dépasse les limites acceptables, on ajuste dès que possible."]]],
+  ["ex","Tu migres un client de Sage vers ACD. Au 2e Sprint, la reprise révèle des comptes auxiliaires mal codés. Transparence : l’anomalie est visible sur le tableau. Inspection : on la repère au Daily. Adaptation : on revoit le plan pour traiter le mapping d’abord."],
+  ["p","Sans transparence, l’inspection trompe et l’adaptation devient du hasard. Les événements Scrum sont justement les moments d’inspection et d’adaptation."],
+  ["trap","« Planification, contrôle, reporting » sonne sérieux mais décrit la gestion de projet classique, pas l’empirisme."]]},
+ {t:"Les 5 valeurs",min:3,b:[
+  ["p","L’équipe Scrum s’engage à vivre cinq valeurs."],
+  ["defs",[["Engagement","Atteindre ses objectifs et se soutenir mutuellement."],["Focus","Se concentrer sur le travail du Sprint."],["Ouverture","Sur le travail et sur les difficultés rencontrées."],["Respect","Se considérer comme des professionnels capables et indépendants."],["Courage","Faire ce qui est juste et s’attaquer aux problèmes difficiles."]]],
+  ["ex","Dire au Product Owner que la reprise des immobilisations ne tiendra pas dans le Sprint, c’est du courage et de l’ouverture. Le cacher jusqu’à la Review, c’est l’inverse."],
+  ["trap","Ne confonds pas les 5 valeurs avec les 3 piliers de l’empirisme. En anglais : Commitment, Focus, Openness, Respect, Courage."]]},
+ {t:"Artefacts et engagements",min:4,b:[
+  ["p","Chaque artefact a un engagement. Il renforce la transparence et donne un repère pour mesurer la progression."],
+  ["pairs",[["Artefact","Engagement"],["Product Backlog","Product Goal"],["Sprint Backlog","Sprint Goal"],["Incrément","Definition of Done"]]],
+  ["p","Le Product Goal est l’objectif à long terme du produit. Le Sprint Goal est l’unique objectif du Sprint. La Definition of Done décrit l’état de qualité exigé pour l’Incrément."],
+  ["ex","Product Goal : « Tous les dossiers du cabinet tournent sur ACD avant la clôture annuelle. » Sprint Goal : « Les 20 dossiers BIC sont repris avec des balances équilibrées. »"],
+  ["key",["Un seul Product Goal à la fois","Le Sprint Goal est créé pendant la Sprint Planning","Plusieurs Incréments peuvent être créés dans un même Sprint"]]]},
+ {t:"La Definition of Done",min:4,b:[
+  ["p","La Definition of Done (DoD) décrit formellement l’état de l’Incrément quand il atteint la qualité requise. Dès qu’un élément du Product Backlog respecte la DoD, un Incrément est né."],
+  ["p","Si la DoD est un standard de l’organisation, toutes les équipes la suivent au minimum. Sinon, l’équipe Scrum crée une DoD adaptée au produit. Les Developers doivent s’y conformer."],
+  ["ex","DoD d’une migration : balance d’ouverture équilibrée, totaux contrôlés par journal, déclaration de TVA test générée, validation par le comptable du dossier."],
+  ["key",["Ce qui ne respecte pas la DoD n’est ni présenté en Review, ni livré","Plusieurs équipes sur un même produit partagent la même DoD","La DoD peut se renforcer (souvent en Rétrospective), jamais s’assouplir pour « finir à tout prix »"]],
+  ["trap","Les parties prenantes ne définissent pas la DoD, et le Scrum Master ne « valide » pas l’Incrément."]]}
+]},
+{n:"Rôles et responsabilités",s:"Product Owner, Scrum Master, Developers",L:[
+ {t:"L’équipe Scrum",min:4,b:[
+  ["p","Une équipe Scrum, c’est un Scrum Master, un Product Owner et des Developers. Pas de sous-équipes, pas de hiérarchie. Elle compte généralement 10 personnes ou moins."],
+  ["key",["Pluridisciplinaire : elle a toutes les compétences pour créer de la valeur à chaque Sprint","Auto-gérée : elle décide en interne qui fait quoi, quand et comment","Responsable de toutes les activités liées au produit"]],
+  ["ex","Pour une migration : un consultant fonctionnel, un comptable référent, un profil technique pour les imports. Si l’équipe dépend d’un autre service pour chaque reprise, elle n’est pas vraiment pluridisciplinaire."],
+  ["p","Si l’équipe devient trop grande, elle se réorganise en plusieurs équipes Scrum centrées sur le même produit : même Product Goal, même Product Backlog, même Product Owner."],
+  ["trap","Le Guide 2020 ne parle plus de « 3 à 9 Developers ». Retiens : 10 personnes ou moins, en général."]]},
+ {t:"Le Product Owner",min:4,b:[
+  ["p","Il est responsable de maximiser la valeur du produit issue du travail de l’équipe, et de la gestion efficace du Product Backlog."],
+  ["key",["Développer et communiquer explicitement le Product Goal","Créer et communiquer clairement les éléments du Product Backlog","Ordonner les éléments du Product Backlog","S’assurer que le Product Backlog est transparent, visible et compris"]],
+  ["p","Il peut déléguer ce travail, mais il en reste responsable. C’est une seule personne, pas un comité. Pour changer le Product Backlog, il faut convaincre le Product Owner."],
+  ["ex","Le directeur du cabinet veut passer la reprise de la paie avant la compta. Il ne modifie pas le backlog lui-même : il en parle au Product Owner, qui tranche."],
+  ["trap","Seul le Product Owner peut annuler un Sprint."]]},
+ {t:"Les Developers",min:3,b:[
+  ["p","Ce sont les personnes qui créent n’importe quel aspect d’un Incrément utilisable à chaque Sprint. « Developer » ne veut pas dire informaticien : un consultant ou un comptable peut en être un."],
+  ["key",["Créer le plan du Sprint, le Sprint Backlog","Instiller la qualité en respectant la Definition of Done","Adapter leur plan chaque jour vers le Sprint Goal","Se tenir mutuellement responsables, en professionnels"]],
+  ["ex","Le Product Owner dit quoi migrer en priorité. Les Developers décident comment : scripts d’import, contrôles, ordre des dossiers."],
+  ["trap","Personne, pas même le Scrum Master, ne dit aux Developers comment transformer le backlog en Incrément."]]},
+ {t:"Le Scrum Master",min:5,b:[
+  ["p","Il est responsable de l’efficacité de l’équipe Scrum et de la mise en place de Scrum tel que défini dans le Guide. C’est un vrai leader, qui sert l’équipe et l’organisation."],
+  ["defs",[["Au service de l’équipe","Coacher l’auto-gestion et la pluridisciplinarité, faire retirer les obstacles, s’assurer que les événements ont lieu, sont positifs et respectent leur time-box."],["Au service du Product Owner","Aider à trouver des techniques pour le Product Goal et le Product Backlog, faciliter la collaboration avec les parties prenantes."],["Au service de l’organisation","Former et coacher l’adoption de Scrum, aider chacun à comprendre l’approche empirique, lever les barrières entre parties prenantes et équipes."]]],
+  ["ex","Tu viens du suivi de projet : le réflexe serait d’assigner les tâches et de faire le reporting. En Scrum, le Scrum Master aide l’équipe à s’organiser elle-même et à rendre son travail transparent."],
+  ["trap","Le Scrum Master n’est ni chef de projet, ni manager, ni validateur. Toute réponse où il « décide », « assigne » ou « approuve » est suspecte."]]}
+]},
+{n:"Événements et time-boxes",s:"Sprint, Planning, Daily, Review, Rétrospective",L:[
+ {t:"Le Sprint, conteneur de tout",min:4,b:[
+  ["p","Le Sprint est un événement de durée fixe, d’un mois maximum, qui contient tous les autres événements. Un nouveau Sprint commence immédiatement après la fin du précédent."],
+  ["key",["Aucun changement qui mettrait le Sprint Goal en danger","La qualité ne diminue pas","Le Product Backlog est affiné au besoin","Le périmètre peut être clarifié et renégocié avec le Product Owner"]],
+  ["p","Un Sprint peut être annulé si son Sprint Goal devient obsolète. Seul le Product Owner peut le faire."],
+  ["ex","Le client annonce qu’il change de logiciel cible en plein Sprint. Le Sprint Goal « reprendre les dossiers sur ACD » n’a plus de sens : le Product Owner peut annuler le Sprint."],
+  ["trap","Un Sprint ne se prolonge jamais. Ce qui n’est pas terminé retourne dans le Product Backlog."]]},
+ {t:"La Sprint Planning",min:4,b:[
+  ["p","Elle lance le Sprint. Toute l’équipe Scrum y travaille et peut inviter d’autres personnes pour des conseils. Time-box : 8 h maximum pour un Sprint d’un mois."],
+  ["defs",[["Pourquoi ce Sprint a-t-il de la valeur ?","Le Product Owner propose comment augmenter la valeur. L’équipe définit ensemble le Sprint Goal."],["Que peut-on terminer ?","Les Developers choisissent les éléments du Product Backlog, en échangeant avec le Product Owner."],["Comment le faire ?","Les Developers planifient le travail, souvent découpé en tâches d’un jour ou moins."]]],
+  ["p","Sprint Goal + éléments choisis + plan pour les livrer = le Sprint Backlog."],
+  ["trap","Ce sont la capacité et la performance passée des Developers qui guident la sélection, pas une demande du management."]]},
+ {t:"Le Daily Scrum",min:3,b:[
+  ["p","15 minutes, chaque jour du Sprint, à la même heure et au même endroit pour simplifier. Il sert à inspecter la progression vers le Sprint Goal et à adapter le Sprint Backlog."],
+  ["p","C’est l’événement des Developers. Si le Product Owner ou le Scrum Master travaillent activement sur des éléments du Sprint Backlog, ils y participent en tant que Developers."],
+  ["ex","Le format « hier j’ai fait, aujourd’hui je fais » n’est pas obligatoire. L’équipe peut s’organiser autour du tableau : quels dossiers bloquent la reprise ?"],
+  ["key",["15 minutes, quelle que soit la durée du Sprint","Ce n’est pas une réunion de reporting pour un manager","Les Developers se reparlent autant que nécessaire dans la journée"]]]},
+ {t:"Sprint Review et Rétrospective",min:5,b:[
+  ["defs",[["Sprint Review · 4 h max","L’équipe et les parties prenantes inspectent le résultat du Sprint et décident des prochaines adaptations. Le Product Backlog peut être ajusté. C’est une séance de travail, pas une présentation."],["Rétrospective · 3 h max","L’équipe Scrum inspecte sa façon de travailler : personnes, interactions, processus, outils, Definition of Done. Les améliorations les plus utiles peuvent entrer dans le Sprint Backlog suivant. Elle clôt le Sprint."]]],
+  ["ex","En Review, le client voit les dossiers repris et signale qu’il lui faut l’analytique avant la TVA : le Product Backlog est réordonné. En Rétro, l’équipe décide d’automatiser le contrôle des balances."],
+  ["trap","L’ordre : Planning, puis Daily chaque jour, puis Review, puis Rétrospective. La Rétro est le dernier événement du Sprint."]]},
+ {t:"Le raffinement du backlog",min:3,b:[
+  ["p","Le raffinement consiste à découper et préciser les éléments du Product Backlog : description, ordre, taille. C’est une activité continue, pas un événement Scrum."],
+  ["p","Les Developers qui feront le travail sont responsables de l’estimation. Le Product Owner peut les aider à comprendre et à arbitrer."],
+  ["key",["Pas de time-box officielle dans le Guide 2020","Les éléments en haut du backlog sont plus clairs et détaillés","Un élément est prêt quand il peut être Done dans un Sprint"]],
+  ["trap","Il y a 5 événements : Sprint, Sprint Planning, Daily Scrum, Sprint Review, Rétrospective. Le raffinement n’en fait pas partie."]]}
+]},
+{n:"PSM 1 : le Scrum Master",s:"Coaching, obstacles, situations d’examen",L:[
+ {t:"Servir plutôt que diriger",min:4,b:[
+  ["p","À l’examen, la bonne réponse du Scrum Master est rarement « décider » ou « régler à la place de ». Elle est presque toujours : enseigner, coacher, faciliter ou rendre visible."],
+  ["defs",[["Enseigner","Expliquer les règles de Scrum quand elles sont mal comprises."],["Coacher","Poser des questions pour que l’équipe trouve sa solution."],["Faciliter","Créer les conditions d’une bonne discussion, sans en imposer le résultat."],["Faire retirer les obstacles","Quand l’équipe ne peut pas les lever seule."]]],
+  ["ex","Deux consultants se disputent sur la méthode de reprise. Le bon réflexe n’est pas de trancher : on laisse l’équipe chercher une solution, puis on aide si elle bloque."],
+  ["trap","Repère les mots « first », « best », « most appropriate » : ils orientent vers l’option qui développe l’auto-gestion."]]},
+ {t:"Les obstacles",min:3,b:[
+  ["p","Un obstacle (impediment) est ce qui ralentit l’équipe et qu’elle ne peut pas résoudre seule. Le Scrum Master aide à le faire retirer."],
+  ["ex","L’équipe attend depuis 4 jours un accès à la base Sage du client. Le Scrum Master va voir la DSI ou le client pour débloquer, sans attendre la Rétrospective."],
+  ["key",["Les Developers résolvent d’abord ce qui est à leur portée","Le Scrum Master intervient quand c’est hors de leur portée","Un problème organisationnel récurrent se traite avec l’organisation"]],
+  ["trap","« Le Scrum Master doit être présent au Daily » est faux : il s’assure que le Daily a lieu et que les Developers savent le tenir en 15 minutes."]]},
+ {t:"Plusieurs équipes, un produit",min:3,b:[
+  ["p","Quand plusieurs équipes Scrum travaillent sur un même produit, elles partagent un seul Product Backlog, un seul Product Goal et un seul Product Owner."],
+  ["key",["Une Definition of Done commune","Un Incrément intégré et utilisable à chaque Sprint","Chaque équipe a son propre Sprint Backlog"]],
+  ["ex","Trois équipes migrent les filiales d’un même groupe : un backlog unique, ordonné par un seul Product Owner, pour éviter que chaque équipe priorise dans son coin."]]},
+ {t:"Mesures et pression du management",min:4,b:[
+  ["p","La vélocité est un outil de prévision propre à une équipe. Elle n’est pas comparable entre équipes et ne mesure pas la valeur."],
+  ["ex","Un associé veut classer les équipes selon les story points livrés. Le Scrum Master explique pourquoi c’est contre-productif et propose de regarder la valeur livrée au client."],
+  ["key",["Burndown, story points, vélocité : pratiques facultatives","La qualité n’est jamais sacrifiée pour tenir une date","Le Scrum Master aide le management à comprendre l’empirisme"]],
+  ["trap","Assouplir la Definition of Done en fin de Sprint pour « finir » est toujours une mauvaise réponse."]]}
+]},
+{n:"PSPO 1 : le Product Owner",s:"Valeur, backlog, prévision, parties prenantes",L:[
+ {t:"Maximiser la valeur",min:3,b:[
+  ["p","Le Product Owner est jugé sur la valeur que le produit apporte, pas sur le respect d’un plan. Il prend les décisions sur le produit, et l’organisation doit les respecter."],
+  ["ex","Livrer en retard toutes les fonctionnalités prévues vaut moins que livrer tôt les trois qui font gagner du temps aux comptables chaque jour."],
+  ["key",["Il est propriétaire de la valeur, pas scribe des demandes","Il a l’autorité sur le Product Backlog","Ses décisions se voient dans le contenu et l’ordre du backlog, et dans l’Incrément inspecté en Review"]]]},
+ {t:"Product Goal et Product Backlog",min:4,b:[
+  ["p","Le Product Backlog est une liste émergente et ordonnée de ce qui est nécessaire pour améliorer le produit. C’est l’unique source du travail de l’équipe Scrum."],
+  ["p","Le Product Goal décrit un état futur du produit. Il est dans le Product Backlog, et le reste du backlog émerge pour l’atteindre. L’équipe atteint (ou abandonne) un objectif avant de passer au suivant."],
+  ["key",["Un élément contient généralement une description, un ordre et une taille","Le format est libre : les user stories sont facultatives","Le backlog n’est jamais terminé, il évolue"]],
+  ["ex","Product Goal : « Zéro saisie manuelle des relevés bancaires dans les dossiers du cabinet. » Éléments : connecteur bancaire, règles d’affectation, contrôle de rapprochement…"]]},
+ {t:"Ordonner, estimer, prévoir",min:4,b:[
+  ["p","Le Product Owner ordonne le backlog selon la valeur, le risque, les dépendances ou l’apprentissage. Les Developers signalent les dépendances techniques, le Product Owner décide."],
+  ["p","Les Developers estiment la taille des éléments. Pour prévoir une date, on s’appuie sur ce qui a réellement été livré (burn-down, burn-up, flux cumulé). Ces outils ne remplacent pas l’empirisme : seul le passé est connu."],
+  ["ex","Le client veut une date de fin. Le Product Owner montre le rythme des 4 derniers Sprints sur un burn-up, et explique que la prévision sera revue à chaque Review."],
+  ["trap","Le Guide dit « ordonner », pas « prioriser par la valeur » : l’ordre peut tenir compte d’autres critères."]]},
+ {t:"Valeur, livraison et parties prenantes",min:4,b:[
+  ["p","La valeur se mesure côté client : usage, satisfaction, gain de temps, revenu. Scrum.org propose l’Evidence-Based Management (EBM) avec 4 domaines : valeur actuelle, valeur non réalisée, délai de mise sur le marché, capacité à innover."],
+  ["p","Le Product Owner peut livrer un Incrément quand il le juge utile, même plusieurs fois dans un Sprint. La Sprint Review n’est pas une porte de livraison."],
+  ["ex","Le connecteur bancaire est Done mercredi : le Product Owner peut le mettre en production sans attendre la Review de vendredi."],
+  ["key",["Le Product Owner représente les besoins des parties prenantes dans le backlog","La Review est le moment clé pour collaborer avec elles","Story points et heures travaillées ne mesurent pas la valeur"]]]}
+]},
+{n:"Examens blancs",s:"Le jour J et les épreuves chronométrées",exam:true,L:[
+ {t:"Le jour J",min:3,b:[
+  ["defs",[["Format","80 questions en 60 minutes, soit environ 45 secondes par question."],["Seuil","85 %, donc au moins 68 bonnes réponses sur 80."],["Types de questions","Choix unique, choix multiples, vrai ou faux."],["Langue","Anglais (ou japonais et chinois). Pas de version française."]]],
+  ["p","L’examen se passe en ligne sur scrum.org, quand tu veux. Avant de payer, fais les tests gratuits Scrum Open et Product Owner Open sur scrum.org, jusqu’à obtenir 100 % plusieurs fois de suite."],
+  ["key",["Ne bloque jamais plus d’une minute : marque la question et reviens-y","Lis jusqu’au bout : « first », « best », « most » changent tout","Pour les choix multiples, le nombre de réponses attendues est indiqué","Révise le lexique anglais dans l’onglet Fiches"]],
+  ["trap","Avoir le Scrum Guide ouvert ne t’aidera pas : il n’y a pas le temps de chercher. Il faut le connaître."]]},
+ {t:"Utiliser les examens blancs",min:2,b:[
+  ["p","Le mode réel reproduit l’examen : 80 questions en anglais en 60 minutes, des questions à marquer, une vue d’ensemble pour revenir en arrière, et la correction en français à la fin. Les examens blancs rapides (40 questions en français, 30 minutes) servent à s’échauffer."],
+  ["key",["Vise 85 % trois fois de suite en mode réel avant de passer la certification","Relis chaque erreur et son explication","Refais le module concerné si un thème reste faible"]]]}
+]}
+];
+
+/* ===================== QUESTIONS ===================== */
+// m = module, a = index ou tableau (choix multiples), d = numéro au diagnostic
+var QS = [
+ // Module 1
+ {m:0,d:14,q:"Quels sont les trois piliers de l’empirisme dans Scrum ?",o:["Planification, contrôle, reporting","Transparence, inspection, adaptation","Engagement, courage, respect","Rôles, événements, artefacts"],a:1,w:"Transparence, inspection, adaptation. Les valeurs sont : engagement, focus, ouverture, respect, courage."},
+ {m:0,d:4,q:"À quel artefact est rattaché l’engagement « Product Goal » ?",o:["Le Sprint Backlog","L’Incrément","Le Product Backlog","La Definition of Done"],a:2,w:"Product Backlog → Product Goal. Sprint Backlog → Sprint Goal. Incrément → Definition of Done."},
+ {m:0,d:9,q:"Si la Definition of Done n’est pas un standard de l’organisation, qui la crée ?",o:["Le Product Owner seul","Le Scrum Master","L’équipe Scrum","Les parties prenantes"],a:2,w:"L’équipe Scrum la crée, et les Developers doivent s’y conformer. Si l’organisation a un standard, il s’applique au minimum."},
+ {m:0,d:12,q:"À la fin du Sprint, l’Incrément doit être…",o:["Validé par le Scrum Master","Livré obligatoirement en production","Utilisable, donc conforme à la Definition of Done","Approuvé par toutes les parties prenantes"],a:2,w:"Utilisable, donc conforme à la Definition of Done. Le Product Owner décide ensuite de le livrer ou non."},
+ {m:0,q:"Scrum est fondé sur l’empirisme et sur…",o:["Le lean thinking","Le cycle en V","La méthode PERT","Le modèle en cascade"],a:0,w:"Le lean thinking : réduire le gaspillage et se concentrer sur l’essentiel."},
+ {m:0,q:"Vrai ou faux : le Scrum Guide décrit en détail les pratiques techniques à utiliser.",o:["Vrai","Faux"],a:1,tf:true,w:"Faux. Scrum est volontairement incomplet : il définit le cadre, pas les pratiques."},
+ {m:0,q:"Lesquelles font partie des valeurs de Scrum ?",o:["Focus","Rapidité","Ouverture","Hiérarchie"],a:[0,2],w:"Les 5 valeurs : engagement, focus, ouverture, respect, courage."},
+ {m:0,q:"Que se passe-t-il au moment où un élément du Product Backlog respecte la Definition of Done ?",o:["Un Incrément est né","Il doit d’abord être validé par le Product Owner","Il ne compte qu’après la Sprint Review","Il est livré automatiquement en production"],a:0,w:"Le Guide est explicite : dès qu’un élément respecte la DoD, un Incrément est né."},
+ {m:0,q:"Trois équipes Scrum travaillent sur le même produit. Que dire de leur Definition of Done ?",o:["Chaque équipe a la sienne","Elles partagent une Definition of Done commune","Seule l’équipe la plus expérimentée en a une","Elle est fixée par le management"],a:1,w:"Une seule DoD pour un même produit, à laquelle toutes les équipes se conforment."},
+ {m:0,q:"Le Sprint Goal est l’engagement de quel artefact ?",o:["Product Backlog","Sprint Backlog","Incrément","Aucun"],a:1,w:"Sprint Backlog → Sprint Goal."},
+ // Module 2
+ {m:1,d:2,q:"Qui est responsable de l’ordonnancement des éléments du Product Backlog ?",o:["Le Scrum Master","Les Developers","Le Product Owner","Les parties prenantes"],a:2,w:"Le Product Owner. Il peut déléguer le travail, mais il en reste responsable."},
+ {m:1,d:6,q:"Qui décide de la manière de transformer les éléments du Product Backlog en Incrément ?",o:["Le Product Owner","Les Developers","Le Scrum Master","Le responsable hiérarchique"],a:1,w:"Les Developers sont auto-gérés : le « quoi » vient du Product Owner, le « comment » vient d’eux."},
+ {m:1,d:10,q:"Quelle affirmation décrit le mieux le rôle du Scrum Master ?",o:["Il assigne les tâches aux Developers","Il est responsable de l’efficacité de l’équipe Scrum","Il est le chef de projet de l’équipe","Il valide l’Incrément avant la Review"],a:1,w:"Un leader au service de l’équipe : il coache, enseigne et fait retirer les obstacles."},
+ {m:1,d:11,q:"Le Product Owner est…",o:["Un comité représentant les parties prenantes","Une seule personne","Le Scrum Master avec un autre chapeau","Le sponsor du projet"],a:1,w:"Une seule personne, jamais un comité. Elle peut représenter les besoins de nombreuses parties prenantes."},
+ {m:1,q:"Quelle taille recommande le Scrum Guide 2020 pour une équipe Scrum ?",o:["3 à 9 Developers","Généralement 10 personnes ou moins","Exactement 7 personnes","Aucune limite"],a:1,w:"Généralement 10 personnes ou moins. « 3 à 9 » vient d’une ancienne version du Guide."},
+ {m:1,q:"Vrai ou faux : une équipe Scrum peut contenir une sous-équipe dédiée aux tests.",o:["Vrai","Faux"],a:1,tf:true,w:"Faux. Pas de sous-équipes ni de hiérarchie dans une équipe Scrum."},
+ {m:1,q:"Qui crée le plan du Sprint, c’est-à-dire le Sprint Backlog ?",o:["Le Product Owner","Le Scrum Master","Les Developers","Le management"],a:2,w:"Les Developers créent le plan du Sprint."},
+ {m:1,q:"Lesquelles sont des responsabilités des Developers ?",o:["Créer le plan du Sprint","Instiller la qualité en respectant la Definition of Done","Ordonner le Product Backlog","Annuler le Sprint"],a:[0,1],w:"Ordonner le backlog et annuler un Sprint relèvent du Product Owner."},
+ {m:1,q:"Un directeur veut faire remonter un élément du Product Backlog. Que doit-il faire ?",o:["Le déplacer lui-même","Demander au Scrum Master de le faire","Convaincre le Product Owner","Attendre la Rétrospective"],a:2,w:"Pour changer le Product Backlog, on convainc le Product Owner."},
+ // Module 3
+ {m:2,d:1,q:"Quelle est la durée maximale d’un Sprint ?",o:["2 semaines","1 mois","6 semaines","Fixée par le Scrum Master"],a:1,w:"Un mois maximum. L’équipe Scrum choisit la durée, souvent 2 semaines."},
+ {m:2,d:3,q:"Qui peut annuler un Sprint ?",o:["Le Scrum Master","Le Product Owner","Les Developers","Le management"],a:1,w:"Seul le Product Owner, par exemple quand le Sprint Goal devient obsolète."},
+ {m:2,d:7,q:"Combien de temps dure au maximum un Daily Scrum ?",o:["15 minutes","30 minutes","1 heure","Cela dépend de la durée du Sprint"],a:0,w:"15 minutes, quelle que soit la durée du Sprint."},
+ {m:2,d:8,q:"Quel événement sert à inspecter l’Incrément avec les parties prenantes et à adapter le Product Backlog ?",o:["Sprint Planning","Sprint Review","Sprint Retrospective","Daily Scrum"],a:1,w:"La Sprint Review, une séance de travail avec les parties prenantes."},
+ {m:2,d:13,q:"Quelle est la durée maximale de la Sprint Planning pour un Sprint d’un mois ?",o:["2 heures","4 heures","8 heures","1 journée complète"],a:2,w:"8 h. Pour un Sprint d’un mois : Planning 8 h, Review 4 h, Rétrospective 3 h, Daily 15 min."},
+ {m:2,d:15,q:"La fin du Sprint arrive et un élément du Sprint Backlog n’est pas terminé. Que fait-on ?",o:["On prolonge le Sprint de quelques jours","Il n’entre pas dans l’Incrément et retourne dans le Product Backlog","On le déclare Done quand même","Le Scrum Master décide"],a:1,w:"Un Sprint n’est jamais prolongé. Ce qui ne respecte pas la DoD retourne dans le Product Backlog."},
+ {m:2,d:5,q:"En plein Sprint, une partie prenante demande une fonctionnalité urgente. Que fait-on ?",o:["On l’ajoute, le client est roi","Le Scrum Master décide","On n’y touche jamais avant la fin du Sprint","Le périmètre peut être renégocié avec le Product Owner, sans mettre le Sprint Goal en danger"],a:3,w:"Le Sprint Goal ne change pas, mais le périmètre peut être clarifié et renégocié avec le Product Owner."},
+ {m:2,q:"Quel événement clôt le Sprint ?",o:["Sprint Review","Daily Scrum","Sprint Retrospective","Sprint Planning"],a:2,w:"La Rétrospective est le dernier événement du Sprint."},
+ {m:2,q:"Vrai ou faux : le raffinement du Product Backlog est un événement Scrum.",o:["Vrai","Faux"],a:1,tf:true,w:"Faux. C’est une activité continue. Les 5 événements sont : Sprint, Planning, Daily, Review, Rétrospective."},
+ {m:2,q:"Quels sujets la Sprint Planning aborde-t-elle ?",o:["Pourquoi ce Sprint a de la valeur","Ce qui peut être terminé","Comment le travail sera fait","Le budget du trimestre"],a:[0,1,2],w:"Pourquoi (Sprint Goal), quoi (éléments choisis), comment (plan)."},
+ {m:2,q:"Le Scrum Master travaille sur un élément du Sprint Backlog. Participe-t-il au Daily Scrum ?",o:["Non, jamais","Oui, en tant que Developer","Oui, pour l’animer obligatoirement","Seulement si le Product Owner l’invite"],a:1,w:"S’il travaille activement sur des éléments du Sprint Backlog, il participe en tant que Developer."},
+ {m:2,q:"Quand commence le Sprint suivant ?",o:["Après une semaine de pause","Immédiatement après la fin du précédent","Quand le Product Owner le décide","Après validation du management"],a:1,w:"Un nouveau Sprint commence immédiatement après la fin du précédent."},
+ // Module 4
+ {m:3,q:"Deux Developers sont en désaccord sur la façon de réaliser une tâche. Que fait d’abord le Scrum Master ?",o:["Il tranche pour gagner du temps","Il remonte le conflit au manager","Il laisse l’équipe essayer de le résoudre, et coache si besoin","Il retire l’un des deux de l’équipe"],a:2,w:"Priorité à l’auto-gestion : l’équipe essaie d’abord, le Scrum Master coache si elle bloque."},
+ {m:3,q:"L’équipe est bloquée par un accès que seul le service informatique peut donner. Quelle est la meilleure réponse ?",o:["Le Scrum Master aide à faire retirer l’obstacle avec l’organisation","Le Product Owner l’ajoute au backlog","Les Developers attendent la Rétrospective","On prolonge le Sprint"],a:0,w:"C’est un obstacle hors de portée de l’équipe : le Scrum Master aide à le faire retirer."},
+ {m:3,q:"Le management veut comparer la vélocité de trois équipes. Que fait le Scrum Master ?",o:["Il fournit le classement demandé","Il explique que la vélocité n’est pas comparable entre équipes","Il demande aux équipes d’harmoniser leurs estimations","Il refuse sans explication"],a:1,w:"La vélocité est propre à chaque équipe. Le Scrum Master enseigne pourquoi, et oriente vers la valeur."},
+ {m:3,q:"Au Daily, chaque Developer fait son point au Scrum Master. Quelle est la meilleure action ?",o:["Continuer, c’est efficace","Coacher les Developers pour qu’ils s’approprient le Daily","Remplacer le Daily par un e-mail","Demander au Product Owner d’animer"],a:1,w:"Le Daily appartient aux Developers. Ce n’est pas un reporting au Scrum Master."},
+ {m:3,q:"Plusieurs équipes Scrum développent le même produit. Combien de Product Backlog ?",o:["Un par équipe","Un seul","Un par Sprint","Autant que de Product Owners"],a:1,w:"Un seul Product Backlog, un seul Product Goal, un seul Product Owner."},
+ {m:3,q:"Vrai ou faux : le Scrum Master doit être présent au Daily Scrum.",o:["Vrai","Faux"],a:1,tf:true,w:"Faux. Il s’assure que le Daily a lieu, mais il n’est pas tenu d’y assister."},
+ {m:3,q:"En fin de Sprint, les Developers proposent d’alléger la Definition of Done pour terminer. Que répondre ?",o:["D’accord, exceptionnellement","Non : la qualité ne diminue pas, le travail non terminé retourne au backlog","Le Product Owner décide seul","On prolonge le Sprint à la place"],a:1,w:"La qualité ne diminue pas pendant un Sprint. On ne baisse jamais la DoD pour finir."},
+ {m:3,q:"Comment le Scrum Master sert-il l’organisation ?",o:["En menant, formant et coachant l’adoption de Scrum","En aidant chacun à comprendre l’approche empirique","En validant les congés de l’équipe","En fixant les objectifs individuels"],a:[0,1],w:"Il forme, coache et aide l’organisation à comprendre l’empirisme. Il n’est pas manager."},
+ {m:3,q:"Comment le Scrum Master aide-t-il le Product Owner ?",o:["En ordonnant le backlog à sa place","En l’aidant à trouver des techniques pour le Product Goal et le Product Backlog","En validant ses décisions","En représentant les parties prenantes"],a:1,w:"Il aide le Product Owner à trouver des techniques, sans décider à sa place."},
+ {m:3,q:"Qui participe à la Sprint Retrospective ?",o:["Les Developers uniquement","L’équipe Scrum : Product Owner, Scrum Master et Developers","Les parties prenantes","Le management"],a:1,w:"Toute l’équipe Scrum inspecte sa façon de travailler."},
+ // Module 5
+ {m:4,q:"De quoi le Product Owner est-il responsable avant tout ?",o:["Respecter le planning initial","Maximiser la valeur du produit","Rédiger toutes les user stories","Gérer l’équipe"],a:1,w:"Maximiser la valeur du produit issue du travail de l’équipe Scrum."},
+ {m:4,q:"Combien de Product Goals l’équipe poursuit-elle à la fois ?",o:["Un seul","Un par Sprint","Autant que nécessaire","Un par partie prenante"],a:0,w:"Un seul. Il doit être atteint ou abandonné avant de passer au suivant."},
+ {m:4,q:"Comment sont les éléments en haut du Product Backlog ?",o:["Plus vagues","Plus clairs et détaillés","Tous de même taille","Déjà terminés"],a:1,w:"Les éléments du haut sont plus clairs et détaillés, car ils seront traités bientôt."},
+ {m:4,q:"Qui est responsable d’estimer la taille des éléments du Product Backlog ?",o:["Le Product Owner","Le Scrum Master","Les Developers qui feront le travail","Les parties prenantes"],a:2,w:"Les Developers. Le Product Owner peut les aider à comprendre et à arbitrer."},
+ {m:4,q:"Vrai ou faux : on ne peut livrer un Incrément qu’à la Sprint Review.",o:["Vrai","Faux"],a:1,tf:true,w:"Faux. Un Incrément peut être livré avant la fin du Sprint. La Review n’est pas une porte de livraison."},
+ {m:4,q:"Quel indicateur reflète le mieux la valeur d’un produit ?",o:["L’usage et la satisfaction des clients","Le nombre de story points livrés","Le respect du plan initial","Les heures travaillées"],a:0,w:"La valeur se mesure côté client. Story points et heures mesurent l’activité, pas la valeur."},
+ {m:4,q:"Les Developers signalent qu’un élément peu prioritaire doit être fait avant un autre, pour des raisons techniques. Qui décide de l’ordre ?",o:["Les Developers","Le Product Owner, en tenant compte de la dépendance","Le Scrum Master","Le client"],a:1,w:"Le Product Owner ordonne le backlog en intégrant les dépendances signalées."},
+ {m:4,q:"Comment le Product Owner prévoit-il au mieux une date de livraison ?",o:["Avec un planning détaillé fait au début","À partir de ce qui a réellement été livré (burn-up par exemple)","En demandant une promesse aux Developers","En ajoutant 20 % de marge"],a:1,w:"Prévision empirique : on s’appuie sur le passé réel et on revoit la prévision à chaque Sprint."},
+ {m:4,q:"Que contient généralement un élément du Product Backlog ?",o:["Une description","Un ordre","Une taille","Le nom du Developer assigné"],a:[0,1,2],w:"Description, ordre et taille. Personne n’est assigné à l’avance."},
+ {m:4,q:"Quels sont les domaines de l’Evidence-Based Management ?",o:["Valeur actuelle, valeur non réalisée, délai de mise sur le marché, capacité à innover","Coût, délai, périmètre, qualité","Vélocité, burndown, story points, heures","Satisfaction, budget, risques, planning"],a:0,w:"EBM : Current Value, Unrealized Value, Time to Market, Ability to Innovate."}
+];
+// [module, question, options, answer (index or array), explication FR, vrai/faux]
+var QE_RAW = [
+// ---------- 0 : Scrum Guide fundamentals ----------
+[0,"Scrum is founded on:",["Empiricism and lean thinking","Predictive planning and control","Waterfall and lean thinking","The Agile Manifesto and PMBOK"],0,"Le Guide 2020 : Scrum repose sur l’empirisme et le lean thinking."],
+[0,"Empiricism asserts that knowledge comes from:",["Experience and making decisions based on what is observed","Detailed upfront analysis","The opinion of experts","Following a predefined plan"],0,"L’empirisme : on apprend de l’expérience et on décide à partir de ce qu’on observe."],
+[0,"What are the three pillars of empiricism?",["Transparency, Inspection, Adaptation","Planning, Inspection, Adaptation","Respect, Courage, Focus","Transparency, Commitment, Delivery"],0,"Les trois piliers : transparence, inspection, adaptation."],
+[0,"What are the consequences of low transparency? (choose 2)",["Inspection becomes misleading and wasteful","Decisions can diminish value and increase risk","The Scrum Master must approve every artifact","The Sprint must be made longer"],[0,1],"Sans transparence, l’inspection trompe et les décisions augmentent le risque."],
+[0,"Which of the following are Scrum values? (choose 3)",["Commitment","Openness","Velocity","Courage","Predictability"],[0,1,3],"Les 5 valeurs : Commitment, Focus, Openness, Respect, Courage."],
+[0,"Scrum is a methodology that specifies exactly how to build products.",["True","False"],1,"Faux. Scrum est un cadre (framework) volontairement incomplet.",1],
+[0,"Why is the Scrum framework purposefully incomplete?",["It only defines the parts required to implement Scrum theory, leaving room for other practices","It is still a draft version","Teams must buy additional training to complete it","It only applies to software development"],0,"Scrum définit le minimum nécessaire, et laisse la place aux pratiques de chaque équipe."],
+[0,"Which commitment gives the Scrum Team a long-term objective?",["The Product Goal","The Sprint Goal","The Definition of Done","The release plan"],0,"Le Product Goal est l’objectif à long terme, engagement du Product Backlog."],
+[0,"What is the commitment for the Increment?",["The Definition of Done","The Sprint Goal","The Product Goal","The acceptance criteria"],0,"Incrément → Definition of Done."],
+[0,"When is an Increment born?",["The moment a Product Backlog item meets the Definition of Done","At the Sprint Review","When the Product Owner accepts it","When it is deployed to production"],0,"Dès qu’un élément respecte la DoD, un Incrément est né."],
+[0,"Multiple Increments may be created within a single Sprint.",["True","False"],0,"Vrai. Plusieurs Incréments peuvent être créés dans un même Sprint.",1],
+[0,"An Increment must be released to production at the end of every Sprint.",["True","False"],1,"Faux. Il doit être utilisable. La livraison est une décision séparée.",1],
+[0,"Who is required to conform to the Definition of Done?",["The Developers","The Product Owner only","The stakeholders","The Scrum Master"],0,"Les Developers doivent se conformer à la DoD."],
+[0,"The Definition of Done is part of the organization’s standards. What should the Scrum Team do?",["Follow it as a minimum","Ignore it if it slows them down","Ask the Scrum Master to rewrite it","Let the Product Owner decide whether it applies"],0,"Le standard de l’organisation s’applique au minimum. L’équipe peut aller plus loin."],
+[0,"Several Scrum Teams work on the same product. What is true about the Definition of Done?",["They must mutually define and comply with the same Definition of Done","Each team defines its own","The strictest team imposes its own","No Definition of Done is needed"],0,"Un produit, une DoD commune à toutes les équipes."],
+[0,"A Product Backlog item does not meet the Definition of Done at the end of the Sprint. What happens? (choose 2)",["It cannot be presented as part of the Increment at the Sprint Review","It returns to the Product Backlog for future consideration","It is released with a list of known issues","The Sprint is extended until it is done"],[0,1],"Non Done = pas dans l’Incrément, retour au Product Backlog. Le Sprint n’est jamais prolongé."],
+[0,"What is the Sprint Backlog composed of? (choose 3)",["The Sprint Goal (why)","The Product Backlog items selected for the Sprint (what)","An actionable plan for delivering the Increment (how)","The release date"],[0,1,2],"Sprint Backlog = pourquoi + quoi + comment."],
+[0,"The Sprint Backlog is a plan by and for:",["The Developers","The Product Owner","The Scrum Master","The stakeholders"],0,"Le Sprint Backlog appartient aux Developers."],
+[0,"The Developers find the Sprint Goal difficult, so they may change it during the Sprint.",["True","False"],1,"Faux. Le Sprint Goal est un engagement. C’est le périmètre qui se renégocie avec le PO.",1],
+[0,"The Product Backlog is:",["An emergent, ordered list of what is needed to improve the product","A fixed list of requirements signed off at the start","A list of tasks for the Developers","Owned by the stakeholders"],0,"Liste émergente et ordonnée de ce qui est nécessaire pour améliorer le produit."],
+[0,"What is the single source of work undertaken by the Scrum Team?",["The Product Backlog","The Sprint Backlog","The project plan","Requests from management"],0,"Le Product Backlog est l’unique source du travail de l’équipe Scrum."],
+[0,"In Scrum, lean thinking means:",["Reducing waste and focusing on the essentials","Working fewer hours","Never writing documentation","Skipping events when the team is busy"],0,"Lean thinking : réduire le gaspillage, se concentrer sur l’essentiel."],
+[0,"Each Scrum event is a formal opportunity to:",["Inspect and adapt Scrum artifacts","Report status to management","Assign tasks","Approve the budget"],0,"Chaque événement sert à inspecter et adapter les artefacts."],
+[0,"Scrum artifacts are designed to maximize transparency of key information.",["True","False"],0,"Vrai. C’est leur raison d’être.",1],
+[0,"Why should Scrum events ideally be held at the same time and place?",["To reduce complexity","Because the Scrum Master needs a fixed schedule","So that management can attend","Because Scrum requires office presence"],0,"Le Guide : même heure, même lieu, pour réduire la complexité."],
+// ---------- 1 : Accountabilities ----------
+[1,"A Scrum Team consists of:",["One Scrum Master, one Product Owner, and Developers","A project manager, developers and testers","A Product Owner, a Scrum Master, a team lead and developers","One Scrum Master for every two teams and developers"],0,"Un Scrum Master, un Product Owner, des Developers."],
+[1,"Within a Scrum Team, there are no sub-teams or hierarchies.",["True","False"],0,"Vrai. Une unité cohésive, centrée sur un objectif.",1],
+[1,"What size does the Scrum Guide recommend for a Scrum Team?",["Typically 10 or fewer people","3 to 9 Developers","Exactly 7 people","There is no guidance"],0,"Généralement 10 personnes ou moins."],
+[1,"A Scrum Team becomes too large. What should happen?",["Reorganize into multiple cohesive Scrum Teams sharing the same Product Goal, Product Backlog and Product Owner","Split into a development team and a testing team","Appoint a lead developer to coordinate","Double the Sprint length"],0,"Plusieurs équipes Scrum, même produit : même Product Goal, Product Backlog et Product Owner."],
+[1,"Who is accountable for maximizing the value of the product?",["The Product Owner","The Scrum Master","The Developers","The stakeholders"],0,"Le Product Owner maximise la valeur."],
+[1,"Who is accountable for the Scrum Team’s effectiveness?",["The Scrum Master","The Product Owner","The Developers","The line manager"],0,"Le Scrum Master est responsable de l’efficacité de l’équipe Scrum."],
+[1,"Who is accountable for creating a plan for the Sprint?",["The Developers","The Product Owner","The Scrum Master","The whole organization"],0,"Les Developers créent le plan du Sprint."],
+[1,"Who is accountable for creating a valuable, useful Increment every Sprint?",["The entire Scrum Team","The Developers only","The Product Owner only","The Scrum Master"],0,"Piège classique : c’est toute l’équipe Scrum."],
+[1,"Which are part of the Product Owner’s accountability? (choose 2)",["Developing and explicitly communicating the Product Goal","Ordering Product Backlog items","Deciding how the Developers do their work","Estimating every item alone"],[0,1],"Le PO gère le Product Goal et ordonne le backlog. Le « comment » et l’estimation reviennent aux Developers."],
+[1,"The Product Owner may delegate Product Backlog management work to others, but remains accountable.",["True","False"],0,"Vrai. Il délègue le travail, pas la responsabilité.",1],
+[1,"The Product Owner is:",["One person, not a committee","A committee representing the stakeholders","The sponsor of the project","A role shared by the Developers"],0,"Une seule personne."],
+[1,"Someone wants to change the Product Backlog. What should they do?",["Try to convince the Product Owner","Change it directly","Ask the Scrum Master to change it","Escalate to management"],0,"On convainc le Product Owner."],
+[1,"For the Product Owner to succeed, the entire organization must:",["Respect their decisions","Approve each decision in a steering committee","Write the Product Backlog items for them","Attend every Daily Scrum"],0,"Le Guide : l’organisation doit respecter les décisions du PO."],
+[1,"What are the Developers accountable for? (choose 3)",["Creating a plan for the Sprint","Instilling quality by adhering to the Definition of Done","Adapting their plan each day toward the Sprint Goal","Ordering the Product Backlog"],[0,1,2],"Ordonner le backlog appartient au Product Owner."],
+[1,"Who decides how many Product Backlog items are selected for the Sprint?",["The Developers, through discussion with the Product Owner","The Product Owner alone","The Scrum Master","Management, based on the deadline"],0,"Les Developers choisissent, en échangeant avec le PO."],
+[1,"How does the Scrum Master serve the Scrum Team? (choose 2)",["Coaching team members in self-management and cross-functionality","Causing the removal of impediments to the team’s progress","Assigning tasks to Developers","Writing Product Backlog items"],[0,1],"Coacher l’auto-gestion, faire retirer les obstacles."],
+[1,"How does the Scrum Master serve the Product Owner? (choose 2)",["Helping find techniques for effective Product Goal definition and Product Backlog management","Facilitating stakeholder collaboration as requested or needed","Ordering the Product Backlog on the PO’s behalf","Approving releases"],[0,1],"Aider en techniques et faciliter, sans décider à la place du PO."],
+[1,"How does the Scrum Master serve the organization? (choose 2)",["Leading, training and coaching the organization in its Scrum adoption","Removing barriers between stakeholders and Scrum Teams","Performing performance reviews of the Developers","Setting the team’s salaries"],[0,1],"Accompagner l’adoption de Scrum, lever les barrières."],
+[1,"The Scrum Guide describes Scrum Masters as:",["True leaders who serve the Scrum Team and the larger organization","Project managers","Technical leads","Team supervisors"],0,"« True leaders who serve »."],
+[1,"The Scrum Master can also be a Developer on the same Scrum Team.",["True","False"],0,"Vrai. Le Guide ne l’interdit pas.",1],
+[1,"In Scrum, self-managing means the team:",["Internally decides who does what, when, and how","Does not need a Product Owner","Sets its own Product Goal without the PO","Has no rules to follow"],0,"Ils décident en interne qui fait quoi, quand et comment."],
+[1,"A cross-functional Scrum Team:",["Has all the skills necessary to create value each Sprint","Has members who can each do every task","Must include a dedicated tester and analyst","Works across several products"],0,"Toutes les compétences nécessaires dans l’équipe, pas chez chaque personne."],
+[1,"Who is responsible for all product-related activities, such as stakeholder collaboration, verification, maintenance and operation?",["The Scrum Team","The operations department","The Product Owner","The Scrum Master"],0,"L’équipe Scrum est responsable de toutes les activités liées au produit."],
+[1,"In Scrum, Developers must be software programmers.",["True","False"],1,"Faux. Un Developer est toute personne qui crée l’Incrément.",1],
+[1,"Who has the authority to cancel a Sprint?",["The Product Owner","The Scrum Master","The Developers","The stakeholders"],0,"Seul le Product Owner."],
+// ---------- 2 : Events ----------
+[2,"Sprints are fixed-length events of:",["One month or less","Exactly two weeks","Two to six weeks","As long as the work requires"],0,"Un mois maximum."],
+[2,"What are benefits of shorter Sprints? (choose 2)",["They limit risk of cost and effort to a smaller time frame","They generate more learning cycles","They produce more status reports for management","They remove the need for a Definition of Done"],[0,1],"Plus de cycles d’apprentissage, risque limité."],
+[2,"What is true during the Sprint? (choose 3)",["No changes are made that would endanger the Sprint Goal","Quality does not decrease","Scope may be clarified and renegotiated with the Product Owner as more is learned","The Sprint Goal is revised every day"],[0,1,2],"Le Sprint Goal reste stable, la qualité ne baisse pas, le périmètre se renégocie."],
+[2,"When does a new Sprint start?",["Immediately after the conclusion of the previous Sprint","After a one-week break","When the Product Owner decides","After management approval"],0,"Immédiatement après la fin du précédent."],
+[2,"What is the maximum time-box for Sprint Planning in a one-month Sprint?",["8 hours","4 hours","2 hours","1 day per week of Sprint"],0,"8 heures pour un Sprint d’un mois."],
+[2,"Which topic is NOT addressed during Sprint Planning?",["What did we learn about our way of working last Sprint?","Why is this Sprint valuable?","What can be Done this Sprint?","How will the chosen work get done?"],0,"C’est le sujet de la Rétrospective."],
+[2,"Can people outside the Scrum Team attend Sprint Planning?",["Yes, the Scrum Team may invite them to provide advice","No, never","Only managers","Only paying customers"],0,"L’équipe peut inviter des personnes pour des conseils."],
+[2,"When must the Sprint Goal be finalized?",["Before the end of Sprint Planning","At the first Daily Scrum","By the Sprint Review","By the Product Owner before Sprint Planning"],0,"Le Sprint Goal est finalisé avant la fin de la Sprint Planning."],
+[2,"What is the purpose of the Daily Scrum?",["To inspect progress toward the Sprint Goal and adapt the Sprint Backlog","To report status to the Scrum Master","To update the Product Owner on hours worked","To solve every technical problem"],0,"Inspecter la progression vers le Sprint Goal, adapter le plan."],
+[2,"The Daily Scrum is the only time Developers are allowed to adjust their plan.",["True","False"],1,"Faux. Ils se reparlent et adaptent leur plan tout au long de la journée.",1],
+[2,"The Developers find the three classic Daily Scrum questions useless. What should they do?",["Choose any structure and techniques, as long as the event focuses on progress toward the Sprint Goal","Keep the three questions because they are mandatory","Cancel the Daily Scrum","Ask the Scrum Master to decide the format"],0,"Le format est libre. Les trois questions ne sont plus dans le Guide 2020."],
+[2,"For a two-week Sprint, the Daily Scrum may last 30 minutes.",["True","False"],1,"Faux. 15 minutes, quelle que soit la durée du Sprint.",1],
+[2,"What is the purpose of the Sprint Review?",["To inspect the outcome of the Sprint and determine future adaptations","To approve the Increment for release","To evaluate the Developers","To plan the next Sprint in detail"],0,"Inspecter le résultat du Sprint et décider des prochaines adaptations."],
+[2,"What is the maximum time-box of the Sprint Review for a one-month Sprint?",["4 hours","3 hours","8 hours","2 hours"],0,"4 heures."],
+[2,"The Sprint Review should be limited to a presentation of the Increment.",["True","False"],1,"Faux. C’est une séance de travail, pas une simple présentation.",1],
+[2,"Who takes part in the Sprint Review?",["The Scrum Team and key stakeholders","Only the Developers and the Scrum Master","Only management","Only the Product Owner and the customer"],0,"L’équipe Scrum et les parties prenantes clés."],
+[2,"What is the purpose of the Sprint Retrospective?",["To plan ways to increase quality and effectiveness","To inspect the Increment with stakeholders","To re-estimate the Product Backlog","To evaluate individual performance"],0,"Améliorer la qualité et l’efficacité."],
+[2,"What does the Scrum Team inspect during the Sprint Retrospective? (choose 3)",["Individuals and interactions","Processes and tools","Their Definition of Done","The stakeholders’ performance"],[0,1,2],"Personnes, interactions, processus, outils et DoD."],
+[2,"Which event concludes the Sprint?",["The Sprint Retrospective","The Sprint Review","The release","The last Daily Scrum"],0,"La Rétrospective clôt le Sprint."],
+[2,"Improvements identified in the Sprint Retrospective can only be applied in the following Sprint’s Retrospective.",["True","False"],1,"Faux. Les plus utiles sont traitées au plus vite, voire ajoutées au Sprint Backlog suivant.",1],
+[2,"Product Backlog refinement is a time-boxed Scrum event.",["True","False"],1,"Faux. C’est une activité continue.",1],
+[2,"When could a Sprint be cancelled?",["If the Sprint Goal becomes obsolete","If the team is behind schedule","If a team member is ill","If a stakeholder requests a new feature"],0,"Seulement si le Sprint Goal devient obsolète."],
+[2,"What is the order of events within a Sprint?",["Sprint Planning, Daily Scrums, Sprint Review, Sprint Retrospective","Sprint Planning, Sprint Review, Daily Scrums, Sprint Retrospective","Sprint Retrospective, Sprint Planning, Daily Scrums, Sprint Review","Daily Scrums, Sprint Planning, Sprint Retrospective, Sprint Review"],0,"Planning, Daily, Review, Rétrospective."],
+[2,"Which of the following are Scrum events? (choose 3)",["The Sprint","The Sprint Review","The Daily Scrum","Product Backlog Refinement","Release Planning"],[0,1,2],"Le raffinement et la release planning ne sont pas des événements."],
+[2,"For a two-week Sprint, Sprint Planning must still last exactly 8 hours.",["True","False"],1,"Faux. 8 h est un maximum. Pour un Sprint plus court, c’est généralement plus court.",1],
+// ---------- 3 : Scrum Master situations ----------
+[3,"Midway through the Sprint, the Developers realize they cannot complete all the selected items. What should happen?",["The Developers collaborate with the Product Owner to renegotiate scope without endangering the Sprint Goal","The Sprint is extended","The Scrum Master removes items","The Developers work overtime without telling anyone"],0,"On renégocie le périmètre avec le PO, le Sprint Goal reste."],
+[3,"Two Developers disagree strongly on a technical approach. What should the Scrum Master do first?",["Allow the Developers to resolve it themselves, and coach if needed","Make the decision for them","Escalate to their manager","Ask the Product Owner to decide"],0,"D’abord l’auto-gestion, puis le coaching si besoin."],
+[3,"A manager asks the Scrum Master for an individual performance report on each Developer. What is the best response?",["Explain that the Scrum Team is accountable as a whole, and invite the manager to the Sprint Review to see the results","Provide individual metrics from the Sprint Backlog","Refuse without explanation","Ask the Product Owner to rank the Developers"],0,"L’équipe est responsable collectivement. Le SM aide le management à comprendre."],
+[3,"The Developers ask the Scrum Master to assign tasks to them. What should the Scrum Master do?",["Coach them on self-management and let them decide","Assign tasks this one time","Ask the Product Owner to assign them","Let the most senior Developer assign them"],0,"Le SM ne distribue pas les tâches."],
+[3,"A Developer cannot access a test environment because of a company IT policy. Who is accountable for causing the removal of this impediment?",["The Scrum Master","The Developer’s line manager","The Product Owner","Nobody, it is outside the team"],0,"Le SM fait retirer les obstacles que l’équipe ne peut pas lever seule."],
+[3,"During the Daily Scrum, each Developer reports their status to the Scrum Master. What is the best action?",["Coach the Developers so they own the Daily Scrum and focus on the Sprint Goal","Keep going, it works","Replace the Daily Scrum with a written report","Ask the Product Owner to run it"],0,"Le Daily appartient aux Developers, pas au SM."],
+[3,"A stakeholder regularly asks Developers directly to work on new requests during the Sprint. What should the Scrum Master do?",["Help the stakeholder understand how to work through the Product Owner and the Product Backlog","Let the Developers accept the requests","Forbid the stakeholder from talking to the team","Extend the Sprint to fit the requests"],0,"Le PO est le point d’entrée du travail."],
+[3,"The Product Owner is rarely available to the Developers. What should the Scrum Master do?",["Coach the Product Owner on the importance of collaboration and help find solutions","Take over the Product Owner role","Let the Developers order the Product Backlog","Report the Product Owner to management"],0,"Coacher, pas remplacer."],
+[3,"Management wants to compare the velocity of three Scrum Teams. What should the Scrum Master do?",["Explain that velocity is team-specific and not comparable across teams","Produce the comparison","Ask the teams to align their estimates","Refuse without explanation"],0,"La vélocité est propre à chaque équipe."],
+[3,"The Developers want to skip the Sprint Retrospective because there is nothing to improve. What should the Scrum Master do?",["Explain its purpose and help the team find a format that brings value","Agree to skip it","Turn it into a status meeting","Replace it with an e-mail survey"],0,"La Rétrospective n’est pas optionnelle."],
+[3,"Near the end of the Sprint, the Developers propose relaxing the Definition of Done to finish their work. What is the best response?",["Quality does not decrease; unfinished work returns to the Product Backlog","Accept just this once","Let the Product Owner decide alone","Extend the Sprint instead"],0,"On ne baisse jamais la DoD pour finir."],
+[3,"The Scrum Master must attend every Daily Scrum.",["True","False"],1,"Faux. Il s’assure que le Daily a lieu.",1],
+[3,"The Daily Scrum regularly takes 30 minutes because the Developers solve problems during it. What should the Scrum Master do?",["Teach that the event is 15 minutes, and that detailed discussions can happen right after","Let it run longer","Cancel the Daily Scrum","Run it themselves to keep it short"],0,"15 minutes, les discussions détaillées se font après."],
+[3,"Several Scrum Teams work on the same product. How many Product Backlogs should there be?",["One","One per team","One per Sprint","One per Product Owner"],0,"Un produit, un Product Backlog."],
+[3,"When multiple Scrum Teams work on the same product, what must be produced by the end of each Sprint?",["An integrated Increment that meets the Definition of Done","Separate Increments, integrated later","A merged status report","Nothing until the release"],0,"Un Incrément intégré et utilisable."],
+[3,"Management wants to keep weekly status meetings with the Scrum Team. What is the best approach for the Scrum Master?",["Help management see that transparency comes from Scrum artifacts and events, and invite them to the Sprint Review","Organize the meetings","Ask the Developers to write daily reports","Ban management from the team"],0,"Le SM aide l’organisation à comprendre l’empirisme."],
+[3,"The Developers notice increasing technical debt. What are good responses? (choose 2)",["Make it transparent in the Product Backlog and discuss it with the Product Owner","Consider strengthening the Definition of Done to avoid creating new debt","Hide it to keep velocity high","Wait for a dedicated hardening Sprint"],[0,1],"Rendre visible, et renforcer la DoD."],
+[3,"Scrum requires a Sprint 0 for setup before value can be delivered.",["True","False"],1,"Faux. Chaque Sprint vise un Incrément utilisable, le premier aussi.",1],
+[3,"Burn-down charts are mandatory in Scrum.",["True","False"],1,"Faux. C’est une pratique facultative.",1],
+[3,"The Developers ask the Scrum Master to decide the technical architecture. What should the Scrum Master do?",["Help the Developers make the decision themselves","Make the decision","Ask the Product Owner to decide","Hire an architect"],0,"Le « comment » appartient aux Developers."],
+[3,"Sprint Planning takes too long because items are unclear. What could help?",["Refining Product Backlog items before Sprint Planning","Skipping Sprint Planning","Letting the Product Owner plan alone","Making Sprints longer"],0,"Le raffinement continu prépare la Planning."],
+[3,"At the Sprint Review, a key stakeholder dislikes the Increment. What should happen?",["Treat it as valuable feedback and adapt the Product Backlog","Argue that the work met the requirements","Rework the Increment during the Review","Restart the Sprint"],0,"La Review sert justement à adapter."],
+[3,"The Developers finish all Sprint Backlog work two days before the end of the Sprint. What should they do?",["Collaborate with the Product Owner on additional work or improvements","End the Sprint early","Start the next Sprint now","Wait for the Sprint Review"],0,"Le Sprint ne s’arrête pas plus tôt."],
+[3,"A Scrum Master may serve more than one Scrum Team.",["True","False"],0,"Vrai. Le Guide ne l’interdit pas.",1],
+[3,"The Product Owner wants to attend the Daily Scrum to check progress and redirect work. What should the Scrum Master explain?",["The Daily Scrum is for the Developers to plan their day; the Sprint Backlog makes progress visible","The PO must run the Daily Scrum","The PO is not allowed to see the Sprint Backlog","The Daily Scrum is the PO’s status meeting"],0,"Le Daily est l’événement des Developers."],
+[3,"The organization wants to drop the Sprint Retrospective to save time. What is the main risk?",["Problems stay hidden and the team loses a key opportunity to improve","There is no risk","Velocity cannot be calculated","The Product Owner loses authority"],0,"Supprimer un élément de Scrum masque les problèmes."],
+[3,"Who is best placed to know the progress toward the Sprint Goal at any time?",["The Developers","The Scrum Master","The Product Owner","Management"],0,"Les Developers gèrent leur Sprint Backlog."],
+[3,"When is Product Backlog refinement done?",["As an ongoing activity, as needed","Only during a dedicated meeting on day 3","Only during the Sprint Review","Only by the Product Owner, alone"],0,"Activité continue."],
+[3,"The Scrum Master notices the Developers work in silos with hand-offs between analysis, development and testing. What should they do?",["Coach the team on cross-functionality and shared ownership of the Sprint Goal","Create sub-teams per skill","Appoint a test lead","Do nothing"],0,"Coacher la pluridisciplinarité."],
+[3,"Only the Scrum Master may facilitate the Sprint Retrospective.",["True","False"],1,"Faux. Le SM s’assure qu’elle a lieu, n’importe qui peut faciliter.",1],
+[3,"The Developers skip the Daily Scrum when the Scrum Master is absent. What should the Scrum Master do?",["Coach the Developers so they own the event and hold it without them","Make their presence mandatory","Replace it with a chat message","Accept it"],0,"Les Developers doivent s’approprier le Daily."],
+[3,"Management wants to add three people to the team mid-Sprint to go faster. What should the Scrum Master do?",["Help management understand the consequences, such as a short-term drop in productivity, and that the Scrum Team should self-manage its composition","Accept immediately","Ask the Product Owner to approve","Extend the Sprint"],0,"Le SM éclaire les conséquences, sans imposer."],
+[3,"What happens to the Scrum framework when an organization leaves out some of its elements?",["It may cover up problems and limit the benefits of Scrum","Nothing, it is still Scrum","It becomes more efficient","It becomes Scrum 2.0"],0,"Le Guide : Scrum fonctionne en entier."],
+[3,"A new Scrum Team does not know Scrum well. What is the Scrum Master’s first focus?",["Teaching Scrum and coaching the team toward self-management","Running all events and decisions themselves","Writing the Product Backlog","Reporting progress to management"],0,"Enseigner, puis coacher vers l’autonomie."],
+// ---------- 4 : Product Owner ----------
+[4,"What is the Product Owner primarily accountable for?",["Maximizing the value of the product","Delivering the initial plan on time","Writing every user story","Managing the Developers"],0,"Maximiser la valeur."],
+[4,"How many Product Goals does a Scrum Team pursue at a time?",["One","One per Sprint","As many as needed","One per stakeholder"],0,"Un seul, à atteindre ou abandonner avant le suivant."],
+[4,"Where is the Product Goal?",["In the Product Backlog","In the Sprint Backlog","In the Definition of Done","In a separate project charter"],0,"Le Product Goal est dans le Product Backlog."],
+[4,"According to the Scrum Guide, a product is:",["A vehicle to deliver value, with clear boundaries, known stakeholders and well-defined users","Always a piece of software","The same thing as a project","A requirements document"],0,"Un produit est un vecteur de valeur."],
+[4,"All Product Backlog items must be written as user stories.",["True","False"],1,"Faux. Le format est libre.",1],
+[4,"Who is responsible for sizing Product Backlog items?",["The Developers who will do the work","The Product Owner","The Scrum Master","The stakeholders"],0,"Les Developers. Le PO peut les aider à arbitrer."],
+[4,"Product Backlog refinement is:",["Breaking down and further defining items into smaller, more precise items","A mandatory two-hour meeting","An activity done only by the Product Owner","A sign-off step"],0,"Découper et préciser les éléments."],
+[4,"Which Product Backlog items are considered ready for selection at Sprint Planning?",["Items that can be Done by the Scrum Team within one Sprint","Items fully specified and signed off","Items estimated in hours","Items approved by management"],0,"Faisables en un Sprint."],
+[4,"What can the Product Owner use to order the Product Backlog? (choose 2)",["Value","Risks and dependencies","Alphabetical order","Whoever shouts the loudest"],[0,1],"Ordonner selon la valeur, le risque, les dépendances…"],
+[4,"A senior manager insists that her feature be done in the next Sprint. What should the Product Owner do?",["Listen, weigh its value against other items, and make a transparent ordering decision","Comply because of her seniority","Ask the Scrum Master to decide","Add it to the current Sprint immediately"],0,"Le PO décide de l’ordre, en transparence."],
+[4,"An Increment can only be released at the Sprint Review.",["True","False"],1,"Faux. Il peut être livré avant la fin du Sprint.",1],
+[4,"Who decides when to release an Increment?",["The Product Owner","The Developers","The Scrum Master","A release manager"],0,"Le PO décide de livrer."],
+[4,"Which statement about forecasting progress is true?",["Only what has already happened may be used for forward-looking decisions","A detailed initial plan ensures accurate forecasts","Velocity guarantees delivery dates","Forecasts are commitments"],0,"Prévision empirique : seul le passé est connu."],
+[4,"Which are Key Value Areas of Evidence-Based Management? (choose 2)",["Current Value","Time to Market","Lines of code","Hours worked"],[0,1],"EBM : Current Value, Unrealized Value, Time to Market, Ability to Innovate."],
+[4,"Which EBM Key Value Area describes potential future value that could be realized?",["Unrealized Value","Current Value","Ability to Innovate","Time to Market"],0,"Unrealized Value : la valeur potentielle encore non captée."],
+[4,"Growing technical debt most directly reduces which EBM Key Value Area?",["Ability to Innovate","Current Value","Unrealized Value","None"],0,"La dette technique freine la capacité à innover."],
+[4,"Which is the best indicator that the product delivers value?",["Customer outcomes, such as usage and satisfaction","Velocity","Number of items completed","Percentage of the plan completed"],0,"La valeur se mesure côté client."],
+[4,"During the Sprint Review, the Product Backlog may be adjusted to meet new opportunities.",["True","False"],0,"Vrai.",1],
+[4,"What does the Product Owner bring to Sprint Planning?",["A proposal of how the product could increase its value and utility in this Sprint","The task breakdown","The team’s capacity","The Definition of Done"],0,"Le PO propose comment augmenter la valeur."],
+[4,"Who crafts the Sprint Goal?",["The whole Scrum Team","The Product Owner alone","The Developers alone","The Scrum Master"],0,"Toute l’équipe Scrum."],
+[4,"Mid-Sprint, a competitor’s launch makes the Sprint Goal meaningless. What can happen?",["The Product Owner may cancel the Sprint","The Developers must finish anyway","The Scrum Master extends the Sprint","The stakeholders cancel the Sprint"],0,"Sprint Goal obsolète : le PO peut annuler."],
+[4,"Five Scrum Teams build the same product. How many Product Owners should there be?",["One","Five","One per two teams","One chief and five proxies"],0,"Un produit, un Product Owner."],
+[4,"A steering committee wants to approve every Product Backlog change. What is the best response?",["Explain that the PO is one person whose decisions must be respected; the committee can influence by convincing the PO","Accept the approval process","Ask the Scrum Master to chair the committee","Let the Developers vote"],0,"Le PO n’est pas un comité."],
+[4,"The Product Owner should only talk to stakeholders during the Sprint Review.",["True","False"],1,"Faux. Il collabore avec eux en continu.",1],
+[4,"The Product Owner is unsure whether users want a feature. What is the best approach?",["Release a small Increment early to validate the assumption with real users","Build the full feature, then ask","Ask the Scrum Master","Write a long specification first"],0,"Valider tôt, de façon empirique."],
+[4,"The Product Backlog is complete once the Product Goal is defined.",["True","False"],1,"Faux. Il est émergent, jamais terminé.",1],
+[4,"Can stakeholders add items to the Product Backlog?",["They may suggest items, but the PO remains accountable for its content and ordering","Never","Yes, and they also order them","Only through the Scrum Master"],0,"Suggérer oui, décider non."],
+[4,"The Product Owner should keep the Product Backlog hidden from stakeholders to avoid pressure.",["True","False"],1,"Faux. Le backlog doit être transparent et visible.",1],
+[4,"In a fixed-price, fixed-date contract, what is the best variable to adjust?",["Scope, ordered by value","Quality","Sprint length","The Definition of Done"],0,"La qualité ne baisse jamais. On ajuste le périmètre."],
+[4,"What gives the Scrum Team a long-term direction for the product?",["The Product Goal","The Definition of Done","The Sprint Backlog","Velocity"],0,"Le Product Goal."],
+[4,"The top Product Backlog item is too large to be done in one Sprint. What should happen?",["Refine it into smaller items that can be Done within a Sprint","Extend the Sprint","Select it anyway","Skip it"],0,"Découper jusqu’à ce qu’il tienne dans un Sprint."],
+[4,"Non-functional requirements and technical work can be part of the Product Backlog.",["True","False"],0,"Vrai. Tout ce qui améliore le produit peut y figurer.",1],
+[4,"The Product Owner asks the Developers to write some Product Backlog items. Is this allowed?",["Yes, the PO may delegate the work but remains accountable","No, only the PO can write them","Only the Scrum Master can","Only if management approves"],0,"Délégation possible, responsabilité conservée."],
+[4,"Which measures relate to Time to Market? (choose 2)",["Release frequency","Lead time from idea to release","Customer satisfaction","Employee satisfaction"],[0,1],"Fréquence de livraison et délai."],
+[4,"Stakeholders want to formally sign off each item at the Sprint Review before it can be released. What is the best response?",["The Sprint Review is for inspecting and adapting, not a sign-off gate; the PO decides on releases","Accept the sign-off process","Ask the Scrum Master to sign off","Delay all releases until the end of the project"],0,"La Review n’est pas une porte de validation."],
+[4,"The Product Owner can reorder the Product Backlog at any time, even during a Sprint.",["True","False"],0,"Vrai. Le Product Backlog évolue en continu.",1],
+[4,"Mid-Sprint, the Product Owner wants to add an item to the Sprint Backlog. What should happen?",["Discuss it with the Developers; scope can be renegotiated if the Sprint Goal is not endangered","The PO adds it directly","It is always refused","The Sprint is cancelled"],0,"Le Sprint Backlog appartient aux Developers. On négocie."],
+[4,"Who determines what value means for the product?",["The Product Owner, considering customers and stakeholders","The Scrum Master","The Developers","The finance department"],0,"Le PO définit la valeur."],
+[4,"A stakeholder asks when a feature will be delivered. What is the best answer from the Product Owner?",["A forecast based on past performance and current ordering, updated as things change","A fixed promised date","A date committed by the Developers","A refusal to answer"],0,"Prévision empirique, revue régulièrement."],
+[4,"Which statements about the Product Owner are true? (choose 2)",["Their decisions are visible in the content and ordering of the Product Backlog","Their decisions are visible through the inspectable Increment at the Sprint Review","They must approve each task in the Sprint Backlog","They manage the Developers’ working hours"],[0,1],"Le Guide : décisions visibles dans le backlog et dans l’Incrément."]
+];
+
+QE_RAW.forEach(function(r){var q={m:r[0],q:r[1],o:r[2],a:r[3],w:r[4],en:true}; if(r[5])q.tf=true; QS.push(q);});
+QS.forEach(function(q,i){q.id=i;});
+var QFR=QS.filter(function(q){return !q.en;}), QEN=QS.filter(function(q){return q.en;});
+var DIAG = QS.filter(function(q){return q.d;}).sort(function(a,b){return a.d-b.d;}).map(function(q){return q.id;});
+var DIAG_RIGHT = [3,5,6,7,8,11,12]; // résultat du 14 nov. (numéros 1 à 15)
+
+/* ===================== ÉTAT ===================== */
+var KEY="capscrum:v2", S={read:{},best:{},exams:[],diag:null,open:{}};
+try{var raw=localStorage.getItem(KEY); if(raw){var o=JSON.parse(raw); if(o&&typeof o==="object"){S.read=o.read||{};S.best=o.best||{};S.exams=o.exams||[];S.diag=o.diag||null;S.open=o.open||{};}}}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+
+var tab="home", route={mod:null,les:null}, quiz=null, timerId=null;
+var $=function(s){return document.querySelector(s);}, view=$("#view");
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function today(){return new Date().toLocaleDateString("fr-FR",{day:"numeric",month:"short"});}
+function isMulti(q){return Array.isArray(q.a);}
+function lessonsRead(mi){var c=0;MODS[mi].L.forEach(function(_,li){if(S.read[mi+"-"+li])c++;});return c;}
+function modDone(mi){var m=MODS[mi];return lessonsRead(mi)===m.L.length && (m.exam?bestExam()>=85:(S.best[mi]||0)>=85);}
+function bestExam(){var b=0;S.exams.forEach(function(e){b=Math.max(b,Math.round(e.r/e.n*100));});return b;}
+function totalLessons(){var t=0;MODS.forEach(function(m){t+=m.L.length;});return t;}
+function totalRead(){return Object.keys(S.read).length;}
+
+/* ===================== ONGLETS ===================== */
+var ICONS={
+ home:'<svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7"/><path d="M6 10v10h12V10"/></svg>',
+ cours:'<svg viewBox="0 0 24 24"><path d="M3 6.5C5.5 5 8.5 5 12 7c3.5-2 6.5-2 9-.5V19c-2.5-1.5-5.5-1.5-9 .5-3.5-2-6.5-2-9-.5z"/><path d="M12 7v12.5"/></svg>',
+ exam:'<svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2"/><path d="M9.5 3h5"/></svg>',
+ fiches:'<svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 9h8M8 13h8M8 17h5"/></svg>'
+};
+var TABS=[["home","Accueil"],["cours","Cours"],["exam","Examens"],["fiches","Fiches"]];
+function renderTabs(){
+  var box=$("#tabs");
+  if(!box.dataset.built){box.innerHTML='<span class="ind" id="ind" aria-hidden="true"></span>'+TABS.map(function(t){return '<button class="tab" data-tab="'+t[0]+'">'+ICONS[t[0]]+'<span>'+t[1]+'</span></button>';}).join(""); box.dataset.built="1";}
+  var idx=0; Array.prototype.forEach.call(box.querySelectorAll(".tab"),function(b,i){ if(b.dataset.tab===tab){b.setAttribute("aria-current","page");idx=i;} else b.removeAttribute("aria-current"); });
+  $("#ind").style.transform="translateX("+(idx*100)+"%)";
+}
+
+/* ===================== ACCUEIL ===================== */
+function lastScore(){
+  if(S.exams.length){var e=S.exams[S.exams.length-1];return {r:e.r,n:e.n,label:e.k+" · "+e.date};}
+  if(S.diag) return {r:S.diag.r,n:15,label:"Diagnostic · "+S.diag.date};
+  return {r:DIAG_RIGHT.length,n:15,label:"Diagnostic · 14 nov."};
+}
+function nextStep(){
+  for(var mi=0;mi<MODS.length;mi++){
+    var m=MODS[mi];
+    for(var li=0;li<m.L.length;li++){ if(!S.read[mi+"-"+li]) return {label:"Module "+(mi+1)+" · "+m.L[li].t,act:'data-open-les="'+mi+'-'+li+'"'}; }
+    if(!m.exam && (S.best[mi]||0)<85) return {label:"Quiz du module "+(mi+1)+" · "+m.n,act:'data-quiz-mod="'+mi+'"'};
+  }
+  return {label:"PSM 1 · mode réel en anglais · 80 questions",act:'data-real="psm"'};
+}
+function renderHome(){
+  var sc=lastScore(), pct=Math.round(sc.r/sc.n*100), nx=nextStep();
+  var tl=totalLessons(), tr=totalRead(), be=bestExam(), md=0; MODS.forEach(function(_,i){if(modDone(i))md++;});
+  var need=Math.max(0,Math.ceil(sc.n*.85)-sc.r);
+  view.innerHTML=
+   '<div class="bento">'+
+    '<div class="tile navy span2"><div class="tag">'+sc.label+'</div>'+
+      '<div class="hero-num"><b id="cnt" data-to="'+pct+'">'+pct+' %</b><small>'+sc.r+' / '+sc.n+'</small></div>'+
+      '<div><div class="meter" role="img" aria-label="Score '+pct+' pour cent, seuil 85 pour cent"><i style="width:'+pct+'%"></i><u style="left:85%"></u></div>'+
+      '<div class="meter-legend"><span>0</span><span>seuil 85 %</span><span>100</span></div></div>'+
+      '<p>'+(need?'Encore '+need+' bonne'+(need>1?'s':'')+' réponse'+(need>1?'s':'')+' pour atteindre le seuil.':'Seuil atteint. Confirme avec un examen blanc.')+'</p></div>'+
+    '<div class="tile"><span class="ico"><svg viewBox="0 0 24 24"><path d="M3 6.5C5.5 5 8.5 5 12 7c3.5-2 6.5-2 9-.5V19c-2.5-1.5-5.5-1.5-9 .5-3.5-2-6.5-2-9-.5z"/><path d="M12 7v12.5"/></svg></span>'+
+      '<div class="kpi">'+tr+'<small>/ '+tl+'</small></div><div class="tag">Leçons lues</div><div class="prog" style="margin-top:0"><i style="width:'+Math.round(tr/tl*100)+'%"></i></div></div>'+
+    '<div class="tile"><span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2"/><path d="M9.5 3h5"/></svg></span>'+
+      '<div class="kpi">'+(S.exams.length?be+'<small>%</small>':'–')+'</div><div class="tag">Meilleur examen</div><div class="tag" style="font-weight:500">'+md+' / '+MODS.length+' modules validés</div></div>'+
+    '<button class="tile cont span2" '+nx.act+'><span class="ico cta"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l10-6.5z" fill="currentColor" stroke="none"/></svg></span>'+
+      '<span class="txt"><span class="tag">Continuer</span><b>'+nx.label+'</b></span><span class="chev" aria-hidden="true"></span></button>'+
+    renderReady()+
+   '</div>'+
+   '<h2>Modules</h2><div class="stack">'+MODS.map(modCard).join("")+'</div>';
+  countUp();
+}
+function countUp(){
+  var el=$("#cnt"); if(!el) return; var to=+el.dataset.to;
+  if(window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  var t0=null; function step(t){ if(!t0)t0=t; var k=Math.min(1,(t-t0)/900), v=Math.round(to*(1-Math.pow(1-k,3))); el.textContent=v+" %"; if(k<1) requestAnimationFrame(step);} requestAnimationFrame(step);
+}
+function modPill(mi){
+  var m=MODS[mi];
+  if(m.exam){var b=bestExam(); if(!S.exams.length) return '<span class="pill neutral">Pas encore passé</span>'; return '<span class="pill '+(b>=85?"good":"warn")+'">Meilleur '+b+' %</span>';}
+  var s=S.best[mi]; if(s===undefined) return '<span class="pill neutral">Quiz à faire</span>';
+  return '<span class="pill '+(s>=85?"good":"warn")+'">Quiz '+s+' %</span>';
+}
+function modCard(m,mi){
+  var r=lessonsRead(mi), d=modDone(mi);
+  return '<button class="mod'+(d?' done':'')+'" data-open-mod="'+mi+'"><span class="num" style="background:'+(d?'var(--good)':'var(--c'+mi+')')+'">'+(d?'✓':(mi+1))+'</span><span><h3>'+m.n+'</h3><span class="sub">'+m.s+'</span>'+
+    '<span class="meta"><span class="pill neutral">'+r+' / '+m.L.length+' leçons</span>'+modPill(mi)+'</span>'+
+    '<span class="prog" style="display:block"><i style="width:'+Math.round(r/m.L.length*100)+'%"></i></span></span></button>';
+}
+
+/* ===================== COURS ===================== */
+function renderCours(){
+  if(route.mod===null){
+    view.innerHTML='<div class="card"><h3>6 modules, dans l’ordre</h3><p class="muted" style="margin:0">Lis les leçons, puis valide chaque module avec un quiz à 85 %. Les modules 1 à 3 servent aux deux certifications.</p></div>'+
+      '<div class="stack" style="margin-top:12px">'+MODS.map(modCard).join("")+'</div>';
+    return;
+  }
+  var mi=route.mod, m=MODS[mi];
+  if(route.les!==null) return renderLesson(mi,route.les);
+  var quizBtn = m.exam
+    ? '<button class="btn primary" data-real="psm">PSM 1 · mode réel · 80 q · 60 min</button><button class="btn primary" data-real="pspo">PSPO 1 · mode réel · 80 q · 60 min</button><button class="btn" data-exam="psm">Examen blanc rapide en français · 40 q</button>'
+    : '<button class="btn primary" data-quiz-mod="'+mi+'">Quiz du module · '+QFR.filter(function(q){return q.m===mi;}).length+' questions</button>';
+  view.innerHTML='<button class="back" data-back="mods">← Cours</button>'+
+   '<div class="tag" style="margin-top:4px">Module '+(mi+1)+'</div><div class="reader"><h1 style="margin-bottom:6px">'+m.n+'</h1></div>'+
+   '<p class="muted">'+m.s+'</p>'+
+   '<div class="stack list">'+m.L.map(function(l,li){var rd=S.read[mi+"-"+li];
+      return '<button class="les'+(rd?' read':'')+'" data-open-les="'+mi+'-'+li+'"><span class="dot">'+(rd?'✓':(li+1))+'</span><span><b>'+l.t+'</b></span><span class="min">'+l.min+' min</span></button>';}).join("")+'</div>'+
+   '<div class="actions" style="margin-top:18px">'+quizBtn+'</div>'+
+   '<p class="muted" style="margin-top:10px;font-size:14px">'+(m.exam?"Même rythme que le vrai examen : 45 secondes par question, correction à la fin.":"Module validé à partir de 85 %. Meilleur score : "+(S.best[mi]===undefined?"aucun":S.best[mi]+" %")+".")+'</p>';
+}
+function block(b){
+  var k=b[0],v=b[1];
+  if(k==="p") return '<p>'+v+'</p>';
+  if(k==="ex") return '<div class="box ex"><span class="lab">Exemple concret</span><p>'+v+'</p></div>';
+  if(k==="trap") return '<div class="box trap"><span class="lab">Piège d’examen</span><p>'+v+'</p></div>';
+  if(k==="key") return '<div class="box key"><span class="lab">À retenir</span><ul>'+v.map(function(x){return '<li>'+x+'</li>';}).join("")+'</ul></div>';
+  if(k==="defs") return '<div class="defs">'+v.map(function(x){return '<div><b>'+x[0]+'</b>'+x[1]+'</div>';}).join("")+'</div>';
+  if(k==="pairs") return '<div class="pairs">'+v.map(function(x,i){return i===0?'<div class="h">'+x[0]+'</div><div class="h">'+x[1]+'</div>':'<div>'+x[0]+'</div><div>'+x[1]+'</div>';}).join("")+'</div>';
+  return "";
+}
+function renderLesson(mi,li){
+  var m=MODS[mi], l=m.L[li], last=li===m.L.length-1;
+  var nextLabel = last ? (m.exam?"J’ai compris · retour au module":"J’ai compris · passer au quiz") : "J’ai compris · leçon suivante";
+  view.innerHTML='<button class="back" data-back="mod">← '+m.n+'</button>'+
+   '<article class="reader"><div class="tag" style="margin-top:4px">Module '+(mi+1)+' · Leçon '+(li+1)+' / '+m.L.length+' · '+l.min+' min</div><h1>'+l.t+'</h1>'+l.b.map(block).join("")+'</article>'+
+   '<div class="readnav">'+(li>0?'<button class="btn" data-open-les="'+mi+'-'+(li-1)+'">← Préc.</button>':'<span></span>')+
+   '<button class="btn primary" data-done-les="'+mi+'-'+li+'">'+nextLabel+'</button></div>';
+}
+
+/* ===================== QUIZ ===================== */
+function startQuiz(ids,opt){
+  quiz={ids:ids,pos:0,sel:[],locked:false,ans:[],opts:{},title:opt.title,kind:opt.kind,mod:opt.mod,exam:!!opt.exam,examKey:opt.examKey,deadline:opt.sec?Date.now()+opt.sec*1000:null};
+  ids.forEach(function(id){var q=QS[id];quiz.opts[id]=q.tf?[0,1]:shuffle(q.o.map(function(_,i){return i;}));});
+  if(quiz.deadline){clearInterval(timerId);timerId=setInterval(tick,1000);}
+  render();
+}
+function examIds(k){
+  var pool, extra;
+  if(k==="psm"){pool=QFR.filter(function(q){return q.m<=3;}); extra=QFR.filter(function(q){return q.m===4;});}
+  else{pool=QFR.filter(function(q){return q.m===4;}).concat(shuffle(QFR.filter(function(q){return q.m<=2;})).slice(0,30)); extra=QFR.filter(function(q){return q.m===3;});}
+  var ids=shuffle(pool.map(function(q){return q.id;})).slice(0,40);
+  if(ids.length<40) ids=ids.concat(shuffle(extra.map(function(q){return q.id;})).slice(0,40-ids.length));
+  return shuffle(ids);
+}
+function fmt(s){s=Math.max(0,s);var m=Math.floor(s/60),r=s%60;return m+":"+(r<10?"0":"")+r;}
+function tick(){
+  if(!quiz||!quiz.deadline){clearInterval(timerId);return;}
+  var left=Math.round((quiz.deadline-Date.now())/1000), el=$("#timer");
+  if(el){el.textContent=fmt(left); el.classList.toggle("low",left<=120);}
+  if(left<=0){clearInterval(timerId); finishQuiz(true);}
+}
+function isRight(q,ans){
+  if(isMulti(q)){if(ans.length!==q.a.length)return false; return q.a.every(function(x){return ans.indexOf(x)>-1;});}
+  return ans[0]===q.a;
+}
+function renderQuiz(){
+  view.classList.remove("v-fwd","v-back","v-fade","v-up");
+  if(quiz.done) return renderResult();
+  var id=quiz.ids[quiz.pos], q=QS[id], L=["A","B","C","D"], multi=isMulti(q), need=multi?q.a.length:1;
+  var segs=quiz.ids.map(function(_,k){
+    var c=""; if(k<quiz.ans.length){c=quiz.exam?"ans":(quiz.ans[k].ok?"ok":"ko");} else if(k===quiz.pos)c="cur";
+    return '<i class="'+c+'"></i>';}).join("");
+  var opts=quiz.opts[id].map(function(oi,k){
+    var cls="opt", dis="";
+    if(quiz.locked){dis=" disabled"; var correct=multi?q.a.indexOf(oi)>-1:oi===q.a, picked=quiz.sel.indexOf(oi)>-1;
+      if(correct)cls+=" ok"; else if(picked)cls+=" ko";}
+    else if(quiz.sel.indexOf(oi)>-1) cls+=" sel";
+    return '<button class="'+cls+'" data-opt="'+oi+'"'+dis+' aria-pressed="'+(quiz.sel.indexOf(oi)>-1)+'"><span class="l">'+(q.tf?(q.en?(oi===0?"T":"F"):(oi===0?"V":"F")):L[k])+'</span><span>'+q.o[oi]+'</span></button>';}).join("");
+  var hint = q.en ? (multi?"Choose "+need+" answers.":(q.tf?"True or false.":"Choose the best answer.")) : multi ? "Choix multiples : sélectionne "+need+" réponses." : (q.tf?"Vrai ou faux.":(quiz.exam?"Une seule réponse.":"Une seule réponse. Touche pour répondre."));
+  var actions="";
+  if(quiz.locked){
+    var ok=quiz.ans[quiz.ans.length-1].ok;
+    var good=multi?q.a.map(function(i){return q.o[i];}).join(" · "):q.o[q.a];
+    actions='<div class="feedback '+(ok?"good":"bad")+'"><b class="v">'+(ok?"✅ Exact":"❌ Raté")+'</b>'+(ok?"":'<p style="margin:0 0 6px"><b>Bonne réponse :</b> '+good+'</p>')+'<p style="margin:0">'+q.w+'</p></div>'+
+      '<div class="actions"><button class="btn primary" data-act="next">'+(quiz.pos===quiz.ids.length-1?"Voir mon résultat":"Question suivante")+'</button></div>';
+  } else if(multi || quiz.exam){
+    actions='<div class="actions"><button class="btn primary" data-act="validate"'+(quiz.sel.length===need?'':' disabled')+'>'+(quiz.exam?(quiz.pos===quiz.ids.length-1?"Terminer l’examen":"Suivante"):"Valider")+'</button></div>';
+  }
+  var timer = quiz.deadline ? '<span class="timer" id="timer">'+fmt(Math.round((quiz.deadline-Date.now())/1000))+'</span>' : '';
+  view.innerHTML='<div class="qbar"><button class="back" data-act="quit">✕ Quitter</button>'+timer+'<span class="mono muted">'+(quiz.pos+1)+' / '+quiz.ids.length+'</span></div>'+
+   '<div class="segs" aria-hidden="true">'+segs+'</div>'+
+   '<span class="pill">'+(quiz.exam?quiz.title:MODS[q.m].n)+'</span>'+
+   '<div class="qtext">'+q.q+'</div><div class="qhint">'+hint+'</div><div class="opts">'+opts+'</div>'+actions;
+  tick();
+}
+function commit(){
+  var id=quiz.ids[quiz.pos], q=QS[id], ok=isRight(q,quiz.sel);
+  quiz.ans.push({id:id,sel:quiz.sel.slice(),ok:ok});
+  if(quiz.exam){advance();} else {quiz.locked=true; renderQuiz(); var f=$(".feedback"); if(f&&f.scrollIntoView)f.scrollIntoView({block:"nearest",behavior:"smooth"});}
+}
+function advance(){
+  quiz.pos++; quiz.sel=[]; quiz.locked=false;
+  if(quiz.pos>=quiz.ids.length){finishQuiz(false);return;}
+  renderQuiz(); animateView("v-fwd"); window.scrollTo(0,0);
+}
+function finishQuiz(timeout){
+  clearInterval(timerId);
+  // questions sans réponse (temps écoulé) comptées fausses
+  for(var k=quiz.ans.length;k<quiz.ids.length;k++) quiz.ans.push({id:quiz.ids[k],sel:[],ok:false,skip:true});
+  var r=quiz.ans.filter(function(a){return a.ok;}).length, n=quiz.ids.length, pct=Math.round(r/n*100);
+  quiz.done=true; quiz.timeout=timeout; quiz.r=r;
+  if(quiz.kind==="mod"){S.best[quiz.mod]=Math.max(S.best[quiz.mod]||0,pct);}
+  if(quiz.kind==="exam"){S.exams.push({k:quiz.title,r:r,n:n,date:today()});}
+  if(quiz.kind==="diag"){S.diag={r:r,date:today()};}
+  save(); render(); animateView("v-up");
+}
+function renderResult(){
+  var n=quiz.ids.length, r=quiz.r, pct=Math.round(r/n*100), wrong=quiz.ans.filter(function(a){return !a.ok;});
+  var byMod={}; wrong.forEach(function(a){var m=QS[a.id].m; byMod[m]=(byMod[m]||0)+1;});
+  var weak=Object.keys(byMod).sort(function(a,b){return byMod[b]-byMod[a];});
+  var verdict = pct>=85 ? "Seuil atteint, bravo !" : "Il te manque "+(Math.ceil(n*0.85)-r)+" bonne(s) réponse(s) pour atteindre 85 %.";
+  var review = wrong.map(function(a){var q=QS[a.id];
+     var good=isMulti(q)?q.a.map(function(i){return q.o[i];}).join(" · "):q.o[q.a];
+     var mine=a.skip?"Pas de réponse":(a.sel.map(function(i){return q.o[i];}).join(" · ")||"Pas de réponse");
+     return '<details><summary>'+q.q+'</summary><div class="dbody"><p><b>Ta réponse :</b> '+mine+'</p><p><b>Bonne réponse :</b> '+good+'</p><p class="muted" style="margin:0">'+q.w+'</p></div></details>';}).join("");
+  view.innerHTML='<div class="card score"><div class="tag">'+quiz.title+(quiz.timeout?" · temps écoulé":"")+'</div>'+
+    '<div class="big"><b>'+pct+' %</b><small>'+r+' / '+n+'</small></div>'+
+    '<div><div class="meter"><i style="width:'+pct+'%"></i><u style="left:85%"></u></div><div class="meter-legend"><span>0</span><span>seuil 85 %</span><span>100</span></div></div>'+
+    '<p style="margin:0">'+verdict+'</p>'+
+    (weak.length?'<p style="margin:0"><b>À revoir :</b> '+weak.map(function(m){return MODS[m].n+" ("+byMod[m]+")";}).join(", ")+'.</p>':'')+'</div>'+
+    '<div class="actions">'+(wrong.length?'<button class="btn primary" data-act="retry-wrong">Rejouer mes '+wrong.length+' erreurs</button>':'')+
+    '<button class="btn" data-act="close">Terminer</button></div>'+
+    (wrong.length?'<h2>Correction de tes erreurs</h2>'+review:'');
+}
+
+/* ===================== TESTS OFFICIELS SCRUM.ORG ===================== */
+var OPENS=[
+ {k:"scrum",n:"Scrum Open",u:"https://www.scrum.org/open-assessments/scrum-open",f:"PSM 1 · PSPO 1",d:"Le test de base sur le Scrum Guide. Le plus important.",core:1},
+ {k:"po",n:"Product Owner Open",u:"https://www.scrum.org/open-assessments/product-owner-open",f:"PSPO 1",d:"Les responsabilités du Product Owner.",core:1},
+ {k:"nexus",n:"Nexus Open",u:"https://www.scrum.org/open-assessments/nexus-open",f:"Bonus PSM 1",d:"Plusieurs équipes Scrum sur un même produit."},
+ {k:"facil",n:"Facilitation Skills Open",u:"https://www.scrum.org/open-assessments/facilitation-skills-open",f:"Bonus PSM 1",d:"Faciliter sans décider à la place de l’équipe."},
+ {k:"ebm",n:"Evidence-Based Management Open",u:"https://www.scrum.org/open-assessments/evidence-based-management-open",f:"Bonus PSPO 1",d:"Mesurer la valeur d’un produit."},
+ {k:"dev",n:"Scrum Developer Open",u:"https://www.scrum.org/open-assessments/scrum-developer-open",f:"Bonus PSM 1",d:"Scrum vu par les Developers : qualité, DoD."}
+];
+function openScores(k){return S.open[k]||[];}
+function openOk(k){var s=openScores(k).slice(-3);return s.length===3&&s.every(function(x){return x.p>=100;});}
+function realOk(prefix){var s=S.exams.filter(function(e){return e.k.indexOf(prefix)===0;}).slice(-3);return s.length===3&&s.every(function(e){return e.r/e.n>=.85;});}
+function readiness(){
+  var mods=0; for(var i=0;i<5;i++) if(modDone(i)) mods++;
+  return [
+   {t:"Modules 1 à 5 validés",s:mods+" / 5",ok:mods===5},
+   {t:"Scrum Open : 100 % trois fois de suite",s:"scrum.org",ok:openOk("scrum")},
+   {t:"Mode réel PSM 1 : 85 % trois fois de suite",s:"PSM 1",ok:realOk("PSM 1 · mode réel")},
+   {t:"Product Owner Open : 100 % trois fois de suite",s:"PSPO 1",ok:openOk("po")},
+   {t:"Mode réel PSPO 1 : 85 % trois fois de suite",s:"PSPO 1",ok:realOk("PSPO 1 · mode réel")}
+  ];
+}
+function renderReady(){
+  var r=readiness(), n=r.filter(function(x){return x.ok;}).length;
+  return '<div class="tile span2"><div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px"><h3 style="font-family:var(--f-display);font-weight:800;font-size:19px">Prêt pour l’examen ?</h3><span class="pill '+(n===r.length?'good':'neutral')+'">'+n+' / '+r.length+'</span></div>'+
+    '<div class="ready">'+r.map(function(x){return '<div class="'+(x.ok?'ok':'')+'"><span class="ck" aria-hidden="true">'+(x.ok?'✓':'')+'</span><span>'+x.t+'</span></div>';}).join("")+'</div></div>';
+}
+function renderOpens(){
+  return OPENS.map(function(o){
+    var sc=openScores(o.k), last=sc.slice(-5), ok=openOk(o.k);
+    return '<div class="card ocard"><div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px"><div><h3>'+o.n+'</h3><span class="muted" style="font-size:15px">'+o.d+'</span></div><span class="pill '+(ok?'good':(o.core?'warn':'neutral'))+'">'+(ok?'Validé':o.f)+'</span></div>'+
+      (last.length?'<div class="chips">'+last.map(function(x){return '<span class="pill '+(x.p>=100?'good':(x.p>=85?'warn':'bad'))+'">'+x.p+' % · '+x.date+'</span>';}).join("")+'</div>':'')+
+      '<div class="oform"><a class="btn" href="'+o.u+'" target="_blank" rel="noopener">Ouvrir sur scrum.org ↗</a>'+
+      '<label class="sr" for="os-'+o.k+'">Score obtenu à '+o.n+'</label><input id="os-'+o.k+'" type="number" inputmode="numeric" min="0" max="100" placeholder="%"><button class="btn primary" data-oscore="'+o.k+'" aria-label="Enregistrer le score">OK</button></div></div>';
+  }).join("");
+}
+
+/* ===================== EXAMEN RÉEL (EN, 80 q / 60 min) ===================== */
+var REAL=null, realTimer=null;
+function realIds(k){
+  var a,b;
+  if(k==="open") return shuffle(QEN.map(function(q){return q.id;})).slice(0,30);
+  if(k==="psm"){a=shuffle(QEN.filter(function(q){return q.m<=3;})).slice(0,68); b=shuffle(QEN.filter(function(q){return q.m===4;})).slice(0,12);}
+  else{a=shuffle(QEN.filter(function(q){return q.m===4;})).slice(0,40); b=shuffle(QEN.filter(function(q){return q.m<=3;})).slice(0,40);}
+  return shuffle(a.concat(b).map(function(q){return q.id;}));
+}
+function startReal(k){
+  var ids=realIds(k), opts={};
+  ids.forEach(function(id){var q=QS[id];opts[id]=q.tf?[0,1]:shuffle(q.o.map(function(_,i){return i;}));});
+  var title=k==="open"?"Format Scrum Open":(k==="psm"?"PSM 1":"PSPO 1")+" · mode réel", sec=k==="open"?1800:3600;
+  REAL={k:k,title:title,ids:ids,opts:opts,ans:{},flag:{},pos:0,grid:false,deadline:Date.now()+sec*1000};
+  clearInterval(realTimer); realTimer=setInterval(realTick,1000); render();
+}
+function realTick(){
+  if(!REAL){clearInterval(realTimer);return;}
+  var left=Math.round((REAL.deadline-Date.now())/1000), el=$("#rtimer");
+  if(el){el.textContent=fmt(left); el.classList.toggle("low",left<=300);}
+  if(left<=0){finishReal(true);}
+}
+function realAnswered(){return REAL.ids.filter(function(id){return (REAL.ans[id]||[]).length;}).length;}
+function renderReal(){
+  view.classList.remove("v-fwd","v-back","v-fade","v-up");
+  var n=REAL.ids.length, done=realAnswered(), flagged=REAL.ids.filter(function(id){return REAL.flag[id];}).length;
+  var top='<div class="qbar"><button class="back" data-ract="quit">✕ Quitter</button><span class="timer" id="rtimer">'+fmt(Math.round((REAL.deadline-Date.now())/1000))+'</span><span class="mono muted">'+done+' / '+n+'</span></div>'+
+    '<div class="prog" style="margin:0 0 16px"><i style="width:'+Math.round(done/n*100)+'%;animation:none"></i></div>';
+  if(REAL.grid){
+    view.innerHTML=top+'<h3 style="font-family:var(--f-display);font-size:22px;font-weight:800">Vue d’ensemble</h3>'+
+      '<p class="muted" style="font-size:15px">'+(n-done)+' sans réponse · '+flagged+' marquée'+(flagged>1?'s':'')+'. Touche une case pour y aller.</p>'+
+      '<div class="rgrid">'+REAL.ids.map(function(id,i){var c=(REAL.ans[id]||[]).length?"a":""; if(REAL.flag[id])c+=" f"; if(i===REAL.pos)c+=" c"; return '<button class="'+c+'" data-rgo="'+i+'" aria-label="Question '+(i+1)+'">'+(i+1)+'</button>';}).join("")+'</div>'+
+      '<div class="rlegend"><span><i class="a"></i>Répondue</span><span><i class="f"></i>Marquée</span><span><i></i>Sans réponse</span></div>'+
+      '<div class="actions"><button class="btn" data-ract="close-grid">Revenir à la question '+(REAL.pos+1)+'</button><button class="btn primary" data-ract="finish">Terminer l’examen</button></div>';
+    return;
+  }
+  var id=REAL.ids[REAL.pos], q=QS[id], multi=isMulti(q), need=multi?q.a.length:1, sel=REAL.ans[id]||[], L=["A","B","C","D","E"];
+  var opts=REAL.opts[id].map(function(oi,k){var on=sel.indexOf(oi)>-1;
+    return '<button class="opt'+(on?' sel':'')+'" data-ropt="'+oi+'" aria-pressed="'+on+'"><span class="l">'+(q.tf?(oi===0?"T":"F"):L[k])+'</span><span>'+q.o[oi]+'</span></button>';}).join("");
+  var last=REAL.pos===n-1;
+  view.innerHTML=top+
+    '<div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><span class="pill neutral">Question '+(REAL.pos+1)+' of '+n+'</span>'+
+    '<button class="flagbtn'+(REAL.flag[id]?' on':'')+'" data-ract="flag" aria-pressed="'+!!REAL.flag[id]+'"><svg viewBox="0 0 24 24"><path d="M5 21V4h11l-1.5 4L16 12H5"/></svg>'+(REAL.flag[id]?'Marquée':'Marquer')+'</button></div>'+
+    '<div class="qtext">'+q.q+'</div><div class="qhint">'+(multi?'Choose '+need+' answers.':(q.tf?'True or false.':'Choose the best answer.'))+'</div>'+
+    '<div class="opts">'+opts+'</div>'+
+    '<div class="rnav"><button class="btn" data-ract="prev"'+(REAL.pos===0?' disabled':'')+'>← Préc.</button><button class="btn" data-ract="grid">Vue d’ensemble</button><button class="btn primary" data-ract="next">'+(last?'Revoir':'Suiv. →')+'</button></div>';
+}
+function finishReal(timeout){
+  clearInterval(realTimer); closeSheet();
+  var ans=REAL.ids.map(function(id){var s=REAL.ans[id]||[]; return {id:id,sel:s,ok:s.length?isRight(QS[id],s):false,skip:!s.length};});
+  var r=ans.filter(function(a){return a.ok;}).length;
+  S.exams.push({k:REAL.title,r:r,n:REAL.ids.length,date:today()}); save();
+  quiz={ids:REAL.ids.slice(),ans:ans,r:r,done:true,title:REAL.title,timeout:timeout,kind:"exam",exam:true};
+  REAL=null; render(); animateView("v-up"); window.scrollTo(0,0);
+}
+
+/* ===================== EXAMENS ===================== */
+function renderExam(){
+  var hist=S.exams.slice().reverse().slice(0,8);
+  view.innerHTML='<div class="tile navy"><div class="tag">Mode réel · en anglais</div><h3 style="color:var(--on-navy);font-family:var(--f-display);font-weight:800;font-size:22px">80 questions, 60 minutes</h3>'+
+     '<p>Comme sur scrum.org : pas de correction pendant l’épreuve, des questions à marquer, une vue d’ensemble pour revenir en arrière. Correction en français à la fin.</p></div>'+
+   '<div class="actions"><button class="btn primary" data-real="psm">Lancer PSM 1 · mode réel</button><button class="btn primary" data-real="pspo">Lancer PSPO 1 · mode réel</button></div>'+
+   '<h2>Tests officiels gratuits · scrum.org</h2>'+
+   '<p class="muted" style="font-size:15px;margin:0 8px 12px">Rédigés par les auteurs du vrai examen. Fais-les sur scrum.org, puis note ton score ici. Objectif : 100 % trois fois de suite.</p>'+
+   '<div class="stack">'+renderOpens()+'</div>'+
+   '<div class="actions"><button class="btn" data-real="open">S’entraîner au format Scrum Open · 30 q · 30 min</button></div>'+
+   '<h2>Examens blancs rapides · français</h2>'+
+   '<div class="actions" style="margin-top:0"><button class="btn" data-exam="psm">PSM 1 · 40 q · 30 min</button><button class="btn" data-exam="pspo">PSPO 1 · 40 q · 30 min</button></div>'+
+   '<h2>Entraînement libre</h2>'+
+   '<div class="actions" style="margin-top:0"><button class="btn" data-act="random-en">Practice in English · 10 questions</button><button class="btn" data-act="random">Série en français · 10 questions</button><button class="btn" data-act="diag">Refaire le diagnostic · 15 questions</button></div>'+
+   '<p class="muted" style="font-size:14px;margin:10px 8px 0">'+QEN.length+' questions en anglais, '+QFR.length+' en français.</p>'+
+   '<h2>Historique</h2>'+
+   (hist.length?'<div class="card"><div class="tb">'+hist.map(function(e){var p=Math.round(e.r/e.n*100);return '<div>'+e.k+' <span class="muted">· '+e.date+'</span></div><div style="color:var('+(p>=85?"--good-ink":"--bad-ink")+')">'+p+' %</div>';}).join("")+'</div></div>'
+     :'<p class="muted" style="margin:0 8px">Aucun examen pour l’instant. Ton diagnostic du 14 nov. : 7 / 15 (47 %).</p>');
+}
+
+/* ===================== FICHES ===================== */
+function renderFiches(){
+  view.innerHTML=
+  '<details open><summary>Time-boxes</summary><div class="dbody"><p class="muted">Maximum pour un Sprint d’un mois. Plus court, l’événement est généralement plus court.</p><div class="tb">'+
+   '<div>Sprint</div><div>1 mois</div><div>Sprint Planning</div><div>8 h</div><div>Sprint Review</div><div>4 h</div><div>Rétrospective</div><div>3 h</div><div>Daily Scrum</div><div>15 min</div></div></div></details>'+
+  '<details><summary>Qui fait quoi</summary><div class="dbody"><div class="tb gl">'+
+   '<div>Ordonner le Product Backlog</div><div>PO</div><div>Annuler un Sprint</div><div>PO</div><div>Créer le Sprint Backlog</div><div>Developers</div><div>Décider du « comment »</div><div>Developers</div><div>Estimer les éléments</div><div>Developers</div><div>Créer la DoD (sans standard)</div><div>Équipe Scrum</div><div>Faire retirer les obstacles</div><div>SM</div><div>Livrer un Incrément</div><div>PO</div></div></div></details>'+
+  '<details><summary>Artefacts et engagements</summary><div class="dbody"><div class="tb gl">'+
+   '<div>Product Backlog</div><div>Product Goal</div><div>Sprint Backlog</div><div>Sprint Goal</div><div>Incrément</div><div>Definition of Done</div></div></div></details>'+
+  '<details><summary>Empirisme et valeurs</summary><div class="dbody"><p><b>3 piliers :</b> transparence, inspection, adaptation.</p><p style="margin:0"><b>5 valeurs :</b> engagement, focus, ouverture, respect, courage.</p></div></details>'+
+  '<details><summary>Pièges classiques</summary><div class="dbody"><ul>'+
+   '<li>Le Scrum Master n’est pas un chef de projet</li><li>Un Sprint n’est jamais prolongé</li><li>Le travail non terminé retourne dans le Product Backlog</li>'+
+   '<li>La Review est une séance de travail, pas une démo</li><li>Un Incrément doit être utilisable, pas forcément livré</li><li>On peut livrer avant la Review</li>'+
+   '<li>Le raffinement n’est pas un événement</li><li>La vélocité ne se compare pas entre équipes</li><li>Une équipe : 10 personnes ou moins, sans sous-équipes</li></ul></div></details>'+
+  '<details><summary>Mots-pièges en anglais</summary><div class="dbody"><div class="tb gl">'+[["Accountable","Responsable du résultat"],["Must","Obligatoire selon le Guide"],["Should","Recommandé, pas obligatoire"],["May / can","Possible, autorisé"],["First","La toute première action"],["Best / most","Plusieurs réponses plausibles : la plus fidèle à Scrum"],["Always / never","Souvent un piège, sauf règle explicite"],["Required","Exigé par le Guide"]].map(function(x){return '<div>'+x[0]+'</div><div>'+x[1]+'</div>';}).join('')+'</div></div></details>'+
+  '<details><summary>Lexique anglais de l’examen</summary><div class="dbody"><div class="tb gl">'+
+   [["Accountability","Responsabilité"],["Self-managing","Auto-gérée"],["Cross-functional","Pluridisciplinaire"],["Stakeholder","Partie prenante"],["Impediment","Obstacle"],["Commitment","Engagement"],["Openness","Ouverture"],["Refinement","Raffinement"],["Ordered","Ordonné"],["Timebox","Durée maximale"],["Forecast","Prévision"],["Increment","Incrément"],["Cancel a Sprint","Annuler un Sprint"],["Release","Livrer, mettre en production"]]
+   .map(function(x){return '<div>'+x[0]+'</div><div>'+x[1]+'</div>';}).join("")+'</div></div></details>';
+}
+
+/* ===================== RENDU ===================== */
+var prevPos=null;
+function navPos(){
+  if(quiz||REAL) return {d:3,k:"q"};
+  if(tab==="cours"){ if(route.les!==null) return {d:2,k:"l",i:route.mod*100+route.les}; if(route.mod!==null) return {d:1,k:"m"}; }
+  return {d:0,k:"t"+tab};
+}
+function animateView(cls){
+  view.classList.remove("v-fwd","v-back","v-fade","v-up"); void view.offsetWidth; if(cls) view.classList.add(cls);
+}
+function render(){
+  var np=navPos(), cls="v-fade";
+  if(prevPos){
+    if(np.d===3&&prevPos.d!==3) cls="v-up";
+    else if(prevPos.d===3&&np.d!==3) cls="v-fade";
+    else if(np.d>prevPos.d) cls="v-fwd";
+    else if(np.d<prevPos.d) cls="v-back";
+    else if(np.k==="l"&&prevPos.k==="l") cls=np.i>=prevPos.i?"v-fwd":"v-back";
+    else if(np.k===prevPos.k) cls=null;
+  }
+  prevPos=np;
+  document.body.classList.toggle("inquiz",!!(quiz||REAL));
+  $("#hdr").style.display=(quiz||REAL)?"none":"";
+  renderTabs();
+  var T={home:"Accueil",cours:"Cours",exam:"Examens",fiches:"Fiches"}; $("#htitle").textContent=T[tab];
+  if(REAL) renderReal();
+  else if(quiz) renderQuiz();
+  else if(tab==="home") renderHome();
+  else if(tab==="cours") renderCours();
+  else if(tab==="exam") renderExam();
+  else renderFiches();
+  animateView(cls);
+}
+function go(fn){fn(); render(); window.scrollTo(0,0);}
+function closeSheet(){$("#sheet").innerHTML="";}
+
+document.addEventListener("click",function(e){
+  var el=e.target.closest("button"); if(!el) return;
+  var d=el.dataset;
+  if(d.tab){return go(function(){tab=d.tab; if(tab==="cours"){route={mod:null,les:null};}});}
+  if(d.openMod!==undefined){return go(function(){tab="cours"; route={mod:+d.openMod,les:null};});}
+  if(d.openLes){var p=d.openLes.split("-");return go(function(){tab="cours"; route={mod:+p[0],les:+p[1]};});}
+  if(d.doneLes){var q=d.doneLes.split("-"),mi=+q[0],li=+q[1]; S.read[mi+"-"+li]=1; save();
+    if(li<MODS[mi].L.length-1) return go(function(){route.les=li+1;});
+    if(MODS[mi].exam) return go(function(){route.les=null;});
+    route.les=null; return startQuizMod(mi);}
+  if(d.back==="mods") return go(function(){route={mod:null,les:null};});
+  if(d.back==="mod") return go(function(){route.les=null;});
+  if(d.quizMod!==undefined) return startQuizMod(+d.quizMod);
+  if(d.exam){var k=d.exam; return startQuiz(examIds(k),{title:k==="psm"?"Examen blanc PSM 1":"Examen blanc PSPO 1",kind:"exam",exam:true,sec:1800});}
+  if(d.oscore){var inp=$("#os-"+d.oscore), v=inp?parseInt(inp.value,10):NaN;
+    if(isNaN(v)||v<0||v>100){if(inp){inp.focus();inp.classList.add("err");} return;}
+    (S.open[d.oscore]=S.open[d.oscore]||[]).push({p:v,date:today()}); save(); var yy=window.scrollY; renderExam(); window.scrollTo(0,yy); return;}
+  if(d.real){startReal(d.real); window.scrollTo(0,0); return;}
+  if(d.rgo!==undefined && REAL){REAL.pos=+d.rgo; REAL.grid=false; renderReal(); animateView("v-fade"); window.scrollTo(0,0); return;}
+  if(d.ropt!==undefined && REAL){
+    var rq=QS[REAL.ids[REAL.pos]], ro=+d.ropt, cur=(REAL.ans[rq.id]||[]).slice();
+    if(isMulti(rq)){var ri=cur.indexOf(ro); if(ri>-1)cur.splice(ri,1); else if(cur.length<rq.a.length)cur.push(ro);} else cur=[ro];
+    REAL.ans[rq.id]=cur; var y=window.scrollY; renderReal(); window.scrollTo(0,y); return;}
+  if(d.ract && REAL){
+    var ra=d.ract;
+    if(ra==="next"){ if(REAL.pos<REAL.ids.length-1){REAL.pos++; renderReal(); animateView("v-fwd");} else {REAL.grid=true; renderReal(); animateView("v-up");} window.scrollTo(0,0); return;}
+    if(ra==="prev"){ if(REAL.pos>0){REAL.pos--; renderReal(); animateView("v-back"); window.scrollTo(0,0);} return;}
+    if(ra==="grid"){REAL.grid=true; renderReal(); animateView("v-up"); window.scrollTo(0,0); return;}
+    if(ra==="close-grid"){REAL.grid=false; renderReal(); animateView("v-fade"); window.scrollTo(0,0); return;}
+    if(ra==="flag"){var fid=REAL.ids[REAL.pos]; REAL.flag[fid]=!REAL.flag[fid]; var y2=window.scrollY; renderReal(); window.scrollTo(0,y2); return;}
+    if(ra==="finish"){var un=REAL.ids.length-realAnswered(), fl=REAL.ids.filter(function(id){return REAL.flag[id];}).length;
+      $("#sheet").innerHTML='<div class="sheet"><div class="card"><h3>Terminer l’examen ?</h3><p class="muted">'+(un?un+' question'+(un>1?'s':'')+' sans réponse, comptée'+(un>1?'s':'')+' fausse'+(un>1?'s':'')+'. ':'Toutes les questions ont une réponse. ')+(fl?fl+' marquée'+(fl>1?'s':'')+'.':'')+'</p><div class="actions"><button class="btn primary" data-ract="finish-yes">Terminer et voir la correction</button><button class="btn" data-act="quit-no">Continuer l’examen</button></div></div></div>'; return;}
+    if(ra==="finish-yes"){finishReal(false); return;}
+    if(ra==="quit"){$("#sheet").innerHTML='<div class="sheet"><div class="card"><h3>Quitter l’examen ?</h3><p class="muted">Tes réponses seront perdues et l’examen ne sera pas noté.</p><div class="actions"><button class="btn primary" data-act="quit-yes">Quitter</button><button class="btn" data-act="quit-no">Continuer</button></div></div></div>'; return;}
+  }
+  if(d.opt!==undefined && quiz && !quiz.locked){
+    var qq=QS[quiz.ids[quiz.pos]], oi=+d.opt;
+    if(isMulti(qq)){var ix=quiz.sel.indexOf(oi); if(ix>-1)quiz.sel.splice(ix,1); else if(quiz.sel.length<qq.a.length) quiz.sel.push(oi); renderQuiz();}
+    else if(quiz.exam){quiz.sel=[oi]; renderQuiz();}
+    else {quiz.sel=[oi]; commit();}
+    return;}
+  var act=d.act;
+  if(act==="validate"){commit();return;}
+  if(act==="next"){advance();return;}
+  if(act==="diag"){startQuiz(DIAG.slice(),{title:"Diagnostic",kind:"diag"});return;}
+  if(act==="random"){startQuiz(shuffle(QFR.map(function(q){return q.id;})).slice(0,10),{title:"Série aléatoire",kind:"free"});return;}
+  if(act==="random-en"){startQuiz(shuffle(QEN.map(function(q){return q.id;})).slice(0,10),{title:"Practice in English",kind:"free"});return;}
+  if(act==="retry-wrong"){var w=quiz.ans.filter(function(a){return !a.ok;}).map(function(a){return a.id;}); startQuiz(shuffle(w),{title:"Mes erreurs",kind:"free"}); window.scrollTo(0,0); return;}
+  if(act==="close"){quiz=null; clearInterval(timerId); render(); window.scrollTo(0,0); return;}
+  if(act==="quit"){
+    $("#sheet").innerHTML='<div class="sheet"><div class="card"><h3>Quitter '+(quiz.exam?"l’examen":"le quiz")+' ?</h3><p class="muted">Ta progression sur cette série sera perdue.</p><div class="actions"><button class="btn primary" data-act="quit-yes">Quitter</button><button class="btn" data-act="quit-no">Continuer</button></div></div></div>';
+    return;}
+  if(act==="quit-yes"){closeSheet(); quiz=null; REAL=null; clearInterval(timerId); clearInterval(realTimer); render(); window.scrollTo(0,0); return;}
+  if(act==="quit-no"){closeSheet(); return;}
+});
+function startQuizMod(mi){
+  var ids=shuffle(QFR.filter(function(q){return q.m===mi;}).map(function(q){return q.id;}));
+  startQuiz(ids,{title:"Quiz · "+MODS[mi].n,kind:"mod",mod:mi}); window.scrollTo(0,0);
+}
+
+render();
+})();
+</script>
+<script>
+if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){});});}
+</script>
+</body>
+</html>
