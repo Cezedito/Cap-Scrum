@@ -1,5 +1,5 @@
 // Cap Scrum : fonctionne hors ligne. La page est d'abord demandée au réseau (pour recevoir les mises à jour), sinon servie depuis le cache.
-var CACHE = "capscrum-v1";
+var CACHE = "capscrum-v2";
 var CORE = ["./", "index.html", "manifest.webmanifest", "apple-touch-icon.png", "icon-192.png", "icon-512.png"];
 
 self.addEventListener("install", function (e) {
